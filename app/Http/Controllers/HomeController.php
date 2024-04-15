@@ -27,7 +27,6 @@ class HomeController extends Controller
         if ($role == 'admin') {
             return redirect()->route('admin.index');
         } else if ($role == 'user')
-
-        return redirect()->route('code.get_offer');
+            return redirect()->route('code.get_offer');
     }
 }

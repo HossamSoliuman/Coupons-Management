@@ -152,8 +152,8 @@
 
     <body>
         <div class="background">
-            <div class="shape"></div>
-            <div class="shape"></div>
+            {{-- <div class="shape"></div>
+            <div class="shape"></div> --}}
         </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf

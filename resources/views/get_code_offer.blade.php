@@ -61,13 +61,13 @@
                     success: function(response) {
                         $('#offerResponse').show();
                         $('#responseMessage').html(
-                            '<div class="alert alert-success" role="alert"><p class="h3"><i class="bi bi-check-circle-fill "></i> تمت العملية بنجاح </p>' +
+                            '<div class="alert alert-success" role="alert"><p class="h3"> مبروك ربحت </p>' +
                             '<p>' + response.success.name + '</p>' +
                             '<p class="h1 text-bold">' + response.success.amount + '</p>' +
                             '</div>');
                         $('#responseModalLabel').text('نجاح');
                         $('#modalMessage').html(
-                            '<div class="alert alert-success" role="alert"><p>تمت العملية بنجاح. العرض الموجود بقيمة <p>' +
+                            '<div class="alert alert-success" role="alert"><p>مبروك ربحت </p>' +
                             response.success.amount + '</div>');
                         $('#responseModal').modal('show');
                     },
