@@ -11,7 +11,7 @@
                             <div class="d-flex justify-content-center">
                                 <div class="w-50">
                                     <div class="mb-3 text-center">
-                                        <img src="logo-white.png" alt="Logo" style="max-width: 200px;">
+                                        <img src="logo.jpeg" alt="Logo" style="max-width: 200px;">
                                     </div>
 
                                     <div class="mb-3 ">
@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="mb-3 text-center">
-                                        <button type="submit" class="btn btn-dark btn-sm">{{ __('Login') }}</button>
+                                        <button type="submit" class="btn btn-dark font-size-large">تسجيل دخول</button>
                                     </div>
 
                                 </div>
