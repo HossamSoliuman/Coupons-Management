@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Discount App</title>
+    <title>سعادة</title>
+    <link rel="icon" href="logo.jpeg">
+
 
 
     <!-- Bootstrap CSS -->
