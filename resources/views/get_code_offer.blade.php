@@ -445,6 +445,7 @@
                     data: formData,
                     success: function(response) {
                         $('#code').val("");
+                        $('#phone').val("");
                         $('#offerResponse').show();
                         $('#offerResponse').addClass("message-card-delay-succes");
                         // $('#responseMessage').html(
@@ -472,6 +473,7 @@
                     },
                     error: function(xhr, status, error) {
                         $('#code').val("");
+                        $('#phone').val("");
                         $('#offerResponse').show();
                         // $('#responseMessage').html(
                         //     '<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 18px; margin-right: 4px;"></i>' + xhr
