@@ -10,6 +10,7 @@ class OfferUsage extends Model
     use HasFactory;
     protected $fillable = [
         'offer_id',
+        'phone_number'
     ];
     public function offer()
     {
