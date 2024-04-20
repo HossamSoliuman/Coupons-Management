@@ -12,12 +12,12 @@
     }
 
     .form-control:focus {
-        border-color: #FCE38A !important;
-        box-shadow: 0 0 0 .2rem #FCE38A !important;
+        border-color: #EAFFD0 !important;
+        box-shadow: 0 0 0 .2rem #EAFFD0 !important;
     }
 
     .inputCard {
-        box-shadow: 0 2px 12px 5px #FCE38A !important;
+        box-shadow: 0 2px 12px 5px #EAFFD0 !important;
         height: 450px;
     }
 
@@ -107,7 +107,7 @@
                                         class="btn font-size-large"
                                         style="
                                             border-radius: 25px;
-                                            background-color: #fce38a;
+                                            background-color: #EAFFD0;
                                         "
                                     >
                                         تسجيل دخول

@@ -12,8 +12,8 @@
     }
 
     .form-control:focus {
-        border-color: #FCE38A !important;
-        box-shadow: 0 0 0 .2rem #FCE38A !important;
+        border-color: #EAFFD0 !important;
+        box-shadow: 0 0 0 .2rem #EAFFD0 !important;
     }
 
     .send-button:hover :first-child::before {
@@ -140,7 +140,7 @@
     }
 
     .inputCard {
-        box-shadow: 0 2px 12px 5px #FCE38A !important;
+        box-shadow: 0 2px 12px 5px #EAFFD0 !important;
         height: 450px;
     }
 
@@ -375,7 +375,7 @@
                                         <button type="submit" class="btn font-size-large send-button"
                                             style="
                                             border-radius: 25px;
-                                            background-color: #FCE38A;
+                                            background-color: #EAFFD0;
                                         ">
                                             <i class="bi bi-arrow-left"></i> إرسال
                                         </button>
