@@ -1,30 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <!-- Chart Section -->
     <canvas id="myChart" width="400" height="200"></canvas>
-
-    <!-- Table Section -->
-    <div class="table-container mt-5">
-        <h2>Offer Usage Details</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Interval Start</th>
-                    <th>Offer Count</th>
-                </tr>
-            </thead>
-            <tbody id="offerUsageTableBody">
-                <!-- Offer Usage details will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
 
     <div class="table-container">
         <h2>Offer Usage Details</h2>
         <table class="table">
             <thead>
                 <tr>
+                    <th>Phone Number</th>
                     <th>Code Name</th>
                     <th>Shop Name</th>
                     <th>Name</th>
@@ -36,6 +20,7 @@
             <tbody>
                 @foreach ($offersUsagesDetails as $offerDetails)
                     <tr>
+                        <td>{{ $offerDetails->phone_number }}</td>
                         <td>{{ $offerDetails->offer->code->name }}</td>
                         <td>{{ $offerDetails->offer->shop->name }}</td>
                         <td>{{ $offerDetails->offer->name }}</td>
@@ -48,6 +33,20 @@
         </table>
         <!-- Pagination Links -->
         {{ $offersUsagesDetails->links() }}
+    </div>
+    <div class="table-container mt-5">
+        <h2>Offer Usage Details</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Interval Start</th>
+                    <th>Offer Count</th>
+                </tr>
+            </thead>
+            <tbody id="offerUsageTableBody">
+
+            </tbody>
+        </table>
     </div>
 @endsection
 
