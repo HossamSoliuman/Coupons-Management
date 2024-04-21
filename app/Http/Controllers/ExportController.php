@@ -9,6 +9,7 @@ use App\Models\Shop;
 use Illuminate\Http\Request;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class ExportController extends Controller
 {
@@ -47,14 +48,16 @@ class ExportController extends Controller
         $offerIds = Offer::where('shop_id', $shop->id)->pluck('id');
         $offersUsagesDetails = OfferUsage::with('offer')->whereIn('offer_id', $offerIds)->orderBy('id', 'desc')->get();
         $pdf = Pdf::loadView('exports.shop_usage_details_pdf', compact('offersUsagesDetails', 'shop'));
-        return $pdf->download('offer_usage_details.pdf');
+        $fileName = $shop->name . '_shop_usage_details_' . Carbon::now()->format('Y M d') . '.pdf';
+        return $pdf->download($fileName);
     }
     public function exportExcelShop(Request $request, Shop $shop)
     {
+        $fileName = $shop->name . '_shop_usage_details_' . Carbon::now()->format('Y M d');
         $shop->load('offers');
         $offerIds = Offer::where('shop_id', $shop->id)->pluck('id');
         $offersUsagesDetails = OfferUsage::with('offer.code')->whereIn('offer_id', $offerIds)->orderBy('id', 'desc')->get();
-        $filePath = storage_path('app/temp_shop_usage_details.xlsx');
+        $filePath = storage_path('app/' . $fileName . '.xlsx');
         $writer = SimpleExcelWriter::create($filePath);
         $writer->addRow(["رقم الهاتف", 'اسم الكود', 'اسم العرض', 'كميه العرض', 'أقصى مرات الاستخدام', 'عدد المرات المستخدمة', 'الوقت']);
         foreach ($offersUsagesDetails as $offerDetails) {
@@ -69,6 +72,6 @@ class ExportController extends Controller
             ]);
         }
         $writer->close();
-        return response()->download($filePath, 'تفاصيل استخدام العروض.xlsx')->deleteFileAfterSend(true);
+        return response()->download($filePath, $fileName . '.xlsx')->deleteFileAfterSend(true);
     }
 }
