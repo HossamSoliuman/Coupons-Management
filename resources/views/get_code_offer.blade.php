@@ -364,7 +364,7 @@
 
                                         <label for="phone" class="form-label">أدخل رقم الهاتف</label>
                                         <input id="phone" type="text" class="form-control text-center"
-                                            style="border-radius: 28px;" name="phone" required pattern="^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$" oninvalid="this.setCustomValidity('يرجي إدخال رقم هاتف سعودي')">
+                                            style="border-radius: 28px;" name="phone" required pattern="^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$" oninvalid="this.setCustomValidity('يرجي إدخال رقم هاتف سعودي')" placeholder="+966512345678">
                                     </div>
 
                                     <div class="mb-3 text-center" style="margin-top: 54px;">
