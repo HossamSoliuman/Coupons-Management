@@ -7,25 +7,13 @@ use App\Models\Code;
 use App\Models\OfferUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+// ahmed -> is code exist -> yes -> if
 class GetCodeOffer extends Controller
 {
     public function __invoke(Request $request)
     {
         $inputCode = $request->code;
         $inputPhone = $request->phone;
-
-        $usedOffersByPhone = OfferUsage::with('offer.code')
-            ->where('phone_number', $inputPhone)
-            ->whereHas('offer.code', function ($query) {
-                $query->where('shop_id', auth()->user()->shop_id);
-            })
-            ->where('created_at', '>=', Carbon::now()->subDay())
-            ->get();
-
-        if (!$usedOffersByPhone->isEmpty()) {
-            return response()->json(['error' => 'لقد تم استخدام هذا الكود خلال اقل من يوم'], 404);
-        }
 
         $code = Code::with('offers')
             ->where(DB::raw('BINARY name'), $inputCode)
@@ -35,6 +23,20 @@ class GetCodeOffer extends Controller
         if (!$code) {
             return response()->json(['error' => 'الرمز غير موجود'], 404);
         }
+
+        $usedOffersByPhone = OfferUsage::with('offer.code')
+            ->where('phone_number', $inputPhone)
+            ->whereHas('offer.code', function ($query) use ($code) {
+                $query->where('code_id', $code->id)->where('shop_id', auth()->user()->shop_id);
+            })
+            ->where('created_at', '>=', Carbon::now()->subDay())
+            ->get();
+
+        if (!$usedOffersByPhone->isEmpty()) {
+            return response()->json(['error' => 'لقد تم استخدام هذا الكود خلال اقل من يوم'], 404);
+        }
+
+
 
         $offers = $code->offers()
             ->where('used_times', '<', DB::raw('max_usage_times'))
