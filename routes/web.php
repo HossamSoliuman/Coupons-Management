@@ -36,26 +36,28 @@ Auth::routes([
     'register' => false
 ]);
 
+
 Route::middleware(['auth', 'admin'])->group(function () {
-
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
     Route::get('/index', [IndexController::class, 'offersUsage'])->name('admin.index');
-
     Route::get('index-data', [IndexController::class, 'index']);
     Route::get('code/{code}/offers', [CodeController::class, 'offersUsage'])->name("codes.offers.usage");
     Route::resource('shops', ShopController::class);
     Route::resource('codes', CodeController::class);
     Route::resource('offers', OfferController::class);
     Route::resource('users', UserController::class);
-    Route::get('/lang', [LocalizationController::class, 'setLocale'])->name('setLocale');
+    Route::get('shops/{shop}codes/usage', [ShopController::class, 'codesUsages'])->name('shops.codes.usages');
 
-    Route::get('/{code}/export/pdf', [ExportController::class, 'exportPdf'])->name('export.pdf');
-    Route::get('/{code}/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
+    Route::get('code/{code}/export/pdf', [ExportController::class, 'exportPdf'])->name('export.pdf');
+    Route::get('code/{code}/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
+
+    Route::get('shop/{shop}/export/pdf', [ExportController::class, 'exportPdfShop'])->name('shop.export.pdf');
+    Route::get('shop/{shop}/export/excel', [ExportController::class, 'exportExcelShop'])->name('shop.export.excel');
 });
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
-
     Route::get('/offer', function () {
         return view('get_code_offer');
     })->name('code.get_offer');

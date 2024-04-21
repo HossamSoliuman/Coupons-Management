@@ -6,6 +6,8 @@ use App\Models\Shop;
 use App\Http\Requests\StoreShopRequest;
 use App\Http\Requests\UpdateShopRequest;
 use App\Http\Resources\ShopResource;
+use App\Models\Offer;
+use App\Models\OfferUsage;
 use Hossam\Licht\Controllers\LichtBaseController;
 
 class ShopController extends LichtBaseController
@@ -40,5 +42,12 @@ class ShopController extends LichtBaseController
     {
         $shop->delete();
         return redirect()->route('shops.index');
+    }
+    public function codesUsages(Shop $shop)
+    {
+        $shop->load('offers');
+        $OfferIds = Offer::where('shop_id', $shop->id)->pluck('id');
+        $offersUsagesDetails = OfferUsage::with('offer')->whereIn('offer_id', $OfferIds)->orderBy('id', 'desc')->paginate(10);
+        return view('shops_usages', compact('offersUsagesDetails', 'shop'));
     }
 }
