@@ -13,8 +13,8 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th> Phone number</th>
                             <th> Code Name</th>
-                            <th> Shop Name</th>
                             <th> Name</th>
                             <th> Amount</th>
                             <th> Max usage times</th>
@@ -26,8 +26,8 @@
                     <tbody>
                         @foreach ($offersUsagesDetails as $offerDetails)
                             <tr>
+                                <td class="offer-code_id">{{ $offerDetails->phone_number }}</td>
                                 <td class="offer-code_id">{{ $offerDetails->offer->code->name }}</td>
-                                <td class="offer-shop_id">{{ $offerDetails->offer->shop->name }}</td>
                                 <td class="offer-name">{{ $offerDetails->offer->name }}</td>
                                 <td class="offer-amount">{{ $offerDetails->offer->amount }}</td>
                                 <td class="offer-max_usage_times">{{ $offerDetails->offer->max_usage_times }}</td>
