@@ -96,6 +96,12 @@
                                                 Codes
                                             </a>
                                         </div>
+                                        <div class="">
+                                            <a href="{{ route('shops.codes.usages', ['shop' => $shop->id]) }}"
+                                                class="btn btn-light btn-sm">
+                                                Codes Usages
+                                            </a>
+                                        </div>
                                         <button type="button" class="btn btn-light btn-sm btn-edit mr-2"
                                             data-toggle="modal" data-target="#editModal"
                                             data-shop-id="{{ $shop->id }}"><i class="bi bi-pencil-square"></i>
