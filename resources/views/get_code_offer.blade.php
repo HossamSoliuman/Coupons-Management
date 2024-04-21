@@ -340,23 +340,19 @@
                 <div class="confetti-piece"></div>
                 <div class="confetti-piece"></div>
             </div>
-            <!-- <div class="mb-5 discount" id="discount">
-                    <img src="gift-discount.gif" alt="Logo" style="max-width: 300px" />
-                </div> -->
+
             <div class="mb-5 text-center">
                 <img src="logo.jpeg" alt="Logo" style="max-width: 200px;" />
             </div>
             <div class="col-md-8">
                 <div class="card inputCard" style="border-radius: 25px">
                     <div class="card-body text-center">
-                        {{-- id="offerForm" --}}
+
                         <form id="offerForm">
                             @csrf
                             <div class="d-flex justify-content-center">
                                 <div class="w-50">
-                                    <!-- <div class="mb-3 text-center">
-                                            <img src="logo.jpeg" alt="Logo" style="max-width: 200px;">
-                                        </div> -->
+
 
                                     <div class="mb-3">
                                         <h4 class="mb-5">إحصل على العرض الخاص بك</h4>
@@ -385,31 +381,12 @@
                         </form>
                     </div>
                 </div>
-                <!-- <div
-                        class="card mt-4 message-card"
-                        id="offerResponse"
-                        style="display: none; border-radius: 8px"
-                    >
-                        <div class="card-body text-center" style="border-radius: 25px">
-                            <div id="responseMessage"></div>
-                        </div>
-                    </div> -->
             </div>
         </div>
     </div>
     <div class="modal result" id="responseModal" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered success_tic" role="document">
-            <!-- <div class="modal-content">
-                    <div class="modal-header">
-                        {{-- <h5 class="modal-title" id="responseModalLabel" style="font-family: Arial, sans-serif; text-align: center;">الرد</h5> --}}
-                        <button type="button d-inline" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body text-center" id="responseBody">
-                        <div id="modalMessage"></div>
-                    </div>
-                </div> -->
+
             <div class="modal-content">
                 <a class="close" style="z-index: 3000;" href="#" data-dismiss="modal">&times;</a>
                 <div class="page-body">
@@ -418,12 +395,7 @@
                     </div>
 
                     <div style="text-align: center">
-                        <!-- <img
-                                id="discountModalGif"
-                                src="discountModal.gif"
-                                alt="succes"
-                                style="max-width: 140px"
-                            /> -->
+
                         <img id="failedModalGif" src="failedModal.gif" alt="failed" style="max-width: 140px" />
                         <div></div>
                     </div>
@@ -448,11 +420,6 @@
                         $('#phone').val("");
                         $('#offerResponse').show();
                         $('#offerResponse').addClass("message-card-delay-succes");
-                        // $('#responseMessage').html(
-                        //     '<div class="alert" role="alert" style="background-color: #95E1D3;><p class="h3"> مبروك ربحت </p>' +
-                        //     '<p class="h4 text-bold">' + response.success.name + '</p>' +
-                        //     '<p class="h1 text-bold">' + response.success.amount + '</p>' +
-                        //     '</div>');
                         $('#responseModalLabel').text('نجاح');
                         $('#modalMessage').html(
                             '<div class="alert" role="alert" style="margin-bottom: 0;"><p class="h3 mb-3">مبروك ربحت </p>' +
@@ -460,14 +427,9 @@
                             .success.name + '</p>' + '<p class="h1 text-bold mt-4">' +
                             response.success.amount + '</p>' + '</div>');
                         $('#responseModal').modal('show');
-                        // $('#responseModal').addClass('delay-succes');
                         $('#failedModalGif').addClass('gifHidden');
                         $('#celebrate').addClass('confettiShow');
-                        // $('#discountModalGif').removeClass('gifHidden');
-                        // $('#discount').addClass('discount-animation');
                         setTimeout(function() {
-                            // $('#discount').removeClass('discount-animation');
-                            // $('#responseModal').removeClass('delay-succes');
                             $('#celebrate').removeClass('confettiShow');
                         }, 6000);
                     },
@@ -475,16 +437,12 @@
                         $('#code').val("");
                         $('#phone').val("");
                         $('#offerResponse').show();
-                        // $('#responseMessage').html(
-                        //     '<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 18px; margin-right: 4px;"></i>' + xhr
-                        //     .responseJSON.error + '</div>');
                         $('#responseModalLabel').text('خطأ');
                         $('#modalMessage').html(
                             '<div class="alert" role="alert">' +
                             '<p class="h3">حدث خطأ. ' + xhr.responseJSON.error + '</p>' +
                             '</div>');
                         $('#responseModal').modal('show');
-                        // $('#discountModalGif').addClass('gifHidden');
                         $('#failedModalGif').removeClass('gifHidden');
                     }
                 });
@@ -492,5 +450,3 @@
         });
     </script>
 @endsection
-
-<!-- <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 18px; margin-right: 4px;"></i> -->
