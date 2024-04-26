@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>{{ $shop->name }} Codes</h1>
-                <button type="button" class=" mb-3 btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                     Create a new Code
                 </button>
 
@@ -36,8 +36,8 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="is_shop_page" value="1">
-                                        <button type="submit" class=" ml-3 btn btn-sm btn-dark">Delete</button>
+                                        <button type="submit" class="ml-2 rounded btn btn-sm btn-dark">Delete</button>
                                     </form>
                                 </td>
                             </tr>

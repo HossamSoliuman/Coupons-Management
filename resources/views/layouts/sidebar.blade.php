@@ -17,11 +17,11 @@
         }
     </style>
 @endsection
-<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark  sidebar">
     <div class="position-sticky">
         <ul class="nav flex-column mt-3">
             <li class="nav-item">
-                <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('admin.index') }}">
+                <a class="nav-link rounded btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('admin.index') }}">
                     <i class="bi bi-house-door"></i> Dashboard
                 </a>
                 <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('shops.index') }}">

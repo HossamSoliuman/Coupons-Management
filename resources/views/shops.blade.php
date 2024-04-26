@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>Shops</h1>
-                <button type="button" class=" mb-3 btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                     Create a new Shop
                 </button>
 
@@ -36,8 +36,8 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -92,17 +92,17 @@
                                     <div class="row">
                                         <div class="">
                                             <a href="{{ route('shops.show', ['shop' => $shop->id]) }}"
-                                                class="btn btn-light btn-sm">
+                                                class="btn btn-sm btn-light btn-sm">
                                                 Codes
                                             </a>
                                         </div>
                                         <div class="">
                                             <a href="{{ route('shops.codes.usages', ['shop' => $shop->id]) }}"
-                                                class="btn btn-light btn-sm">
+                                                class="btn btn-sm btn-light btn-sm">
                                                 Codes Usages
                                             </a>
                                         </div>
-                                        <button type="button" class="btn btn-light btn-sm btn-edit mr-2"
+                                        <button type="button" class="btn btn-sm btn-light btn-sm btn-edit mr-2"
                                             data-toggle="modal" data-target="#editModal"
                                             data-shop-id="{{ $shop->id }}"><i class="bi bi-pencil-square"></i>
                                             Edit
@@ -110,7 +110,7 @@
                                         <form action="{{ route('shops.destroy', ['shop' => $shop->id]) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-dark">Delete</button>
+                                            <button type="submit" class="btn rounded btn-sm btn-dark">Delete</button>
                                         </form>
 
                                     </div>

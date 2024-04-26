@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>{{ $code->name }} Offers</h1>
-                <button type="button" class="border rounded mb-3 btn btn-primary" data-toggle="modal"
+                <button type="button" class="border rounded mb-3 btn btn-sm btn-dark" data-toggle="modal"
                     data-target="#staticBackdrop">
                     Create a new Offer
                 </button>
@@ -49,8 +49,8 @@
                                     <input type="hidden" name="is_code_page" value="1">
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -97,8 +97,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 <td class=" offer-max_usage_times">{{ $offer->max_usage_times }}</td>
                                 <td class=" offer-used_times">{{ $offer->used_times }}</td>
                                 <td class="d-flex">
-                                    <button type="button" class="btn btn-light btn-edit" data-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-light btn-edit" data-toggle="modal"
                                         data-target="#editModal">
                                         Edit
                                     </button>
@@ -133,7 +133,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="is_code_page" value="1">
-                                        <button type="submit" class=" ml-3 btn btn-dark">Delete</button>
+                                        <button type="submit" class="ml-1 rounded btn-sm btn btn-dark">Delete</button>
                                     </form>
                                 </td>
                             </tr>

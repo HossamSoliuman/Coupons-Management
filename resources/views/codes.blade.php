@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>Codes</h1>
-                <button type="button" class=" mb-3 btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                     Create a new Code
                 </button>
 
@@ -40,8 +40,8 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -81,8 +81,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -96,9 +96,11 @@
                                     <div class="d-flex justify-content-around">
                                         <h5 class="card-title">{{ $code->name }}</h5>
                                         <h5>
-                                            <span class="badge badge-primary badge-pill">{{ $code->used_times }}<i class="bi bi-person-fill-check"></i></span>
+                                            <span class="badge badge-light badge-pill">{{ $code->used_times }}<i
+                                                    class="bi bi-person-fill-check"></i></span>
                                             <span
-                                                class="badge badge-primary badge-pill">{{ $code->used_times * $code->unit_cost }} <i class="bi bi-currency-dollar"></i></span>
+                                                class="badge badge-light badge-pill">{{ $code->used_times * $code->unit_cost }}
+                                                <i class="bi bi-currency-dollar"></i></span>
                                         </h5>
                                     </div>
                                     <p class="card-text text-center"><i class="bi bi-cart2"></i> {{ $code->shop->name }}
@@ -108,7 +110,8 @@
                                     <div class="row">
                                         <button type="button" class="btn btn-light btn-sm btn-edit mr-2"
                                             data-toggle="modal" data-target="#editModal"
-                                            data-code-id="{{ $code->id }}" data-shop-id="{{ $code->shop->id }}" data-unit-cost="{{ $code->unit_cost }}">
+                                            data-code-id="{{ $code->id }}" data-shop-id="{{ $code->shop->id }}"
+                                            data-unit-cost="{{ $code->unit_cost }}">
                                             Edit
                                         </button>
                                         <a href="{{ route('codes.show', ['code' => $code->id]) }}"

@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>Offers</h1>
-                <button type="button" class="border rounded mb-3 btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class="rounded btn-sm mb-3 btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                     Create a new Offer
                 </button>
 
@@ -51,8 +51,8 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -103,8 +103,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-light btn-sm" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -133,14 +133,14 @@
                                 <td class=" offer-max_usage_times">{{ $offer->max_usage_times }}</td>
                                 <td class=" offer-used_times">{{ $offer->used_times }}</td>
                                 <td class="d-flex">
-                                    <button type="button" class="btn btn-tertiary btn-sm btn-edit" data-toggle="modal"
+                                    <button type="button" class="btn btn-light btn-sm btn-edit" data-toggle="modal"
                                         data-target="#editModal">
                                         Edit
                                     </button>
                                     <form action="{{ route('offers.destroy', ['offer' => $offer->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class=" ml-3 btn btn-sm btn-dark">Delete</button>
+                                        <button type="submit" class=" ml-3 rounded btn btn-sm btn-dark">Delete</button>
                                     </form>
                                 </td>
                             </tr>
