@@ -24,8 +24,7 @@ class StoreCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['string', 'max:255', 'required'],
-            'shop_id' => ['integer', 'exists:shops,id', 'required'],
+            'name' => ['string', 'max:255', 'required', 'unique:codes,name'],
             'unit_cost' => ['string', 'required'],
             'is_shop_page' => 'nullable',
         ];

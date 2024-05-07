@@ -19,9 +19,9 @@ class Code extends Model
 
     protected $append = ['used_times'];
 
-    public function shop()
+    public function shops()
     {
-        return $this->belongsTo(Shop::class);
+        return $this->belongsToMany(Shop::class);
     }
 
     public function offers()

@@ -19,7 +19,7 @@ class OfferController extends LichtBaseController
         $offers = Offer::with(['code', 'shop'])->get();
         $offers = OfferResource::collection($offers);
         $codes = Code::all();
-        $shops = Shop::all();
+        $shops = Shop::whereHas('codes')->get();
         return view('offers', compact('offers', 'codes', 'shops'));
     }
 

@@ -24,8 +24,7 @@ class UpdateCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['string', 'max:255', 'nullable'],
-            'shop_id' => ['integer', 'exists:shops,id', 'nullable'],
+            'name' => ['string', 'max:255', 'nullable', 'unique:codes,name'],
             'is_shop_page' => 'nullable',
             'unit_cost' => ['string', 'nullable'],
 

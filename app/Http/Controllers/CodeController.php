@@ -6,6 +6,7 @@ use App\Models\Code;
 use App\Http\Requests\StoreCodeRequest;
 use App\Http\Requests\UpdateCodeRequest;
 use App\Http\Resources\CodeResource;
+use App\Models\CodeShop;
 use App\Models\Offer;
 use App\Models\OfferUsage;
 use App\Models\Shop;
@@ -17,7 +18,7 @@ class CodeController extends LichtBaseController
 
     public function index()
     {
-        $codes = Code::with('shop')->get();
+        $codes = Code::with('shops')->get();
         $codes = CodeResource::collection($codes);
         $shops = Shop::all();
         return view('codes', compact('codes', 'shops'));
@@ -62,5 +63,24 @@ class CodeController extends LichtBaseController
         $OfferIds = Offer::where('code_id', $code->id)->pluck('id');
         $offersUsagesDetails = OfferUsage::with('offer')->whereIn('offer_id', $OfferIds)->orderBy('id', 'desc')->paginate(10);
         return view('code_offers_usage', compact('offersUsagesDetails', 'code'));
+    }
+    public function shops(Code $code)
+    {
+        $shops = Shop::whereNotIn('id', $code->shops->pluck('id'))->get();
+        return view('code_shops', compact('code', 'shops'));
+    }
+
+    public function addShop(Request $request, $code)
+    {
+        CodeShop::create([
+            'code_id' => $code,
+            'shop_id' => $request->shop_id
+        ]);
+        return redirect()->route('codes.shops', ['code' => $code]);
+    }
+    public function removeShop(Request $request, $code)
+    {
+        CodeShop::where('shop_id', $request->shop_id)->where('code_id', $code)->delete();
+        return redirect()->route('codes.shops', ['code' => $code]);
     }
 }

@@ -4,8 +4,9 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>{{ $shop->name }} Codes</h1>
-                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
-                    Create a new Code
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal"
+                    data-target="#staticBackdrop">
+                    Add a new Code
                 </button>
 
                 <!-- Creating Modal -->
@@ -20,24 +21,28 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('codes.store') }}" method="post">
+                                <form action="{{ route('shops.codes.store') }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="is_shop_page" value="1">
+
                                     <div class="form-group">
                                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Code name"
-                                            required>
+                                        <select name="code_id" id="" class="form-control">
+                                            @foreach ($codes as $code)
+                                                <option value="{{ $code->id }}">{{ $code->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <input type="number" name="unit_cost" class="form-control"
                                             placeholder="Price for each one" required>
-                                    </div>
+                                    </div> --}}
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-light">Add</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -73,8 +78,10 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save
+                                    Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -91,20 +98,17 @@
                     </thead>
                     <tbody>
                         @foreach ($shop->codes as $code)
-                            <tr data-code-id="{{ $code->id }}" data-shop-id="{{ $code->shop->id }}">
+                            <tr data-code-id="{{ $code->id }}" data-shop-id="{{ $shop->id }}">
                                 <td class=" code-name">{{ $code->name }}</td>
                                 <td class=" code-used-times">{{ $code->used_times }}</td>
                                 <td class=" code-unit-cost">{{ $code->unit_cost }}</td>
                                 <td class="d-flex">
-                                    <button type="button" class="btn btn-light btn-sm btn-edit" data-toggle="modal"
-                                        data-target="#editModal">
-                                        Edit
-                                    </button>
-                                    <form action="{{ route('codes.destroy', ['code' => $code->id]) }}" method="post">
+                                    <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="is_shop_page" value="1">
-                                        <button type="submit" class="ml-2 rounded btn btn-sm btn-dark">Delete</button>
+                                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                        <input type="hidden" name="code_id" value="{{ $code->id }}">
+                                        <button type="submit" class="ml-2 rounded btn btn-sm btn-dark">Remove</button>
                                     </form>
                                 </td>
                             </tr>
