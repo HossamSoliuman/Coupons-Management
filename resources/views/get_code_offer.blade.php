@@ -361,11 +361,24 @@
                                             style="border-radius: 28px;" name="code" required />
                                     </div>
                                     <div class="mb-3">
-
                                         <label for="phone" class="form-label">أدخل رقم الهاتف</label>
-                                        <input id="phone" type="text" class="form-control text-center"
-                                            style="border-radius: 28px;" name="phone" required pattern="^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$" oninput="this.reportValidity()" title="أدخل رقم هاتف سعودي صحيح" placeholder="+966512345678">
+                                        <div class="input-group">
+                                            <!-- Saudi flag and country code section -->
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="border-radius: 28px 0 0 28px;">
+                                                    <img src="saudi-flag2.png" alt="Saudi Flag"
+                                                        style="width: 20px; height: auto;">
+                                                    +9665
+                                                </span>
+                                            </div>
+                                            <!-- Actual phone number input section -->
+                                            <input id="phone" type="text" class="form-control text-center"
+                                                style="border-radius: 0 28px 28px 0;" name="phone" required
+                                                pattern="[0-9]{8}" oninput="this.reportValidity()"
+                                                title="أدخل رقم هاتف سعودي صحيح" placeholder="رقم الهاتف (8 أرقام)">
+                                        </div>
                                     </div>
+
 
                                     <div class="mb-3 text-center" style="margin-top: 54px;">
                                         <button type="submit" class="btn font-size-large send-button"

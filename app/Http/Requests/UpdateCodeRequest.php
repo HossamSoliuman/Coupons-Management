@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCodeRequest extends FormRequest
 {
@@ -23,11 +24,16 @@ class UpdateCodeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['string', 'max:255', 'nullable', 'unique:codes,name'],
-            'is_shop_page' => 'nullable',
-            'unit_cost' => ['string', 'nullable'],
+        $codeId = $this->route('code')->id;
 
+        return [
+            'name' => [
+                'string',
+                'max:255',
+                'nullable',
+                Rule::unique('codes')->ignore($codeId),
+            ],
+            'unit_cost' => ['numeric', 'nullable'],
         ];
     }
 }

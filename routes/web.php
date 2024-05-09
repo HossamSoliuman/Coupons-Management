@@ -42,6 +42,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::get('shops/{shop}codes/usage', [ShopController::class, 'codesUsages'])->name('shops.codes.usages');
 
+    Route::get('shops/{shop}/offers', [ShopController::class, 'offers'])->name('shops.offers');
     //code shops
     Route::get('codes/{code}/shops', [CodeController::class, 'shops'])->name('codes.shops');
     Route::post('codes/{code}/shops', [CodeController::class, 'addShop'])->name('codes.shops.store');

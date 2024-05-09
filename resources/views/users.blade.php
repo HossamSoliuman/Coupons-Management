@@ -8,7 +8,6 @@
                     Create a new User
                 </button>
 
-                <!-- Creating Modal -->
                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -50,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Edit User Modal -->
+
                 <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -64,7 +63,7 @@
                             <div class="modal-body">
                                 <form id="editForm" method="post">
                                     @csrf
-                                    @method('PUT')@csrf
+                                    @method('PUT')
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="User name"
                                             required>
@@ -78,7 +77,6 @@
                                             placeholder="Update password" required>
                                     </div>
                                     <div class="form-group">
-
                                             <div class="form-group">
                                                 <select name="shop_id" class="form-control" id="">
                                                     @foreach ($shops as $shop)
@@ -86,7 +84,6 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-
                                     </div>
                                 </form>
                             </div>
@@ -113,7 +110,7 @@
                                 <td class=" user-name">{{ $user->name }}</td>
                                 <td class=" user-email">{{ $user->email }}</td>
                                 @if ($user->role == 'admin')
-                                    <td class=" user-shop_id">{{ $user->role }}</td>
+                                    <td class=" user-role">{{ $user->role }}</td>
                                 @else
                                 <td class="user-shop_id" data-shop-id="{{ $user->shop_id }}">{{ $user->shop->name }}</td>
                                 @endif
@@ -149,7 +146,15 @@
                 var UserId = $(this).closest('tr').data('user-id');
                 $('#editForm').attr('action', '/users/' + UserId);
                 $('#editModal').modal('show');
+
+                var userRole = $(this).closest("tr").find(".user-role").text();
+                if (userRole === 'admin') {
+                    $('#editModal select[name="shop_id"]').closest('.form-group').hide();
+                } else {
+                    $('#editModal select[name="shop_id"]').closest('.form-group').show();
+                }
             });
+
             $('#saveChangesBtn').on('click', function() {
                 $('#editForm').submit();
             });

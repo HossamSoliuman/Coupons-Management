@@ -20,34 +20,40 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <form action="{{ route('shops.codes.store') }}" method="post">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="code_id" id="" class="form-control">
-                                            @foreach ($codes as $code)
-                                                <option value="{{ $code->id }}">{{ $code->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    {{-- <div class="form-group">
-                                        <input type="number" name="unit_cost" class="form-control"
-                                            placeholder="Price for each one" required>
-                                    </div> --}}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-light">Add</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark"
-                                    data-dismiss="modal">Close</button>
-                                </form>
-                            </div>
+                            @if (!$codes->count())
+                                <div class="modal-body">
+                                    <p>There are no codes available</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm rounded btn-dark"
+                                        data-dismiss="modal">Close</button>
+                                </div>
+                            @else
+                                <div class="modal-body">
+                                    <form action="{{ route('shops.codes.store') }}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="code_id" id="" class="form-control" required>
+                                                @foreach ($codes as $code)
+                                                    <option value="{{ $code->id }}">{{ $code->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-sm btn-light">Add</button>
+                                    <button type="button" class="btn btn-sm rounded btn-dark"
+                                        data-dismiss="modal">Close</button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
+
                 <!-- Edit Code Modal -->
                 <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
                     role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -103,7 +109,8 @@
                                 <td class=" code-used-times">{{ $code->used_times }}</td>
                                 <td class=" code-unit-cost">{{ $code->unit_cost }}</td>
                                 <td class="d-flex">
-                                    <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}" method="post">
+                                    <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}"
+                                        method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">

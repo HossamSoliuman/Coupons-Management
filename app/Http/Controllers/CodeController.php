@@ -35,17 +35,14 @@ class CodeController extends LichtBaseController
 
     public function show(Code $code)
     {
-        $code->load('offers');
-        $shops = Shop::all();
+        $code->load('offers', 'shops');
+        $shops = $code->shops;
         return view('code_offers', compact('code', 'shops'));
     }
 
     public function update(UpdateCodeRequest $request, Code $code)
     {
         $code->update($request->validated());
-        if ($request->is_shop_page) {
-            return redirect()->route('shops.show', ['shop' => $request->shop_id]);
-        };
         return redirect()->route('codes.index');
     }
 

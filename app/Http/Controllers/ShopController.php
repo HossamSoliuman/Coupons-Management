@@ -77,4 +77,9 @@ class ShopController extends LichtBaseController
             $shop->codes
         );
     }
+    public function offers(Shop $shop)
+    {
+        $shop->load('offers', 'codes');
+        return view('shop_offers', compact('shop'));
+    }
 }

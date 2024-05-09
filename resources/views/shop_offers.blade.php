@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
-                <h1>{{ $code->name }} Offers</h1>
+                <h1>{{ $shop->name }} Offers</h1>
                 <button type="button" class="border rounded mb-3 btn btn-sm btn-dark" data-toggle="modal"
                     data-target="#staticBackdrop">
                     Add an Offer
@@ -24,12 +24,12 @@
                                 <form action="{{ route('offers.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="hidden" name="code_id" value="{{ $code->id }}">
+                                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     </div>
                                     <div class="form-group">
-                                        <select class="form-control" name="shop_id" id="">
-                                            @foreach ($shops as $shop)
-                                                <option value="{{ $shop->id }}">{{ $shop->name }} </option>
+                                        <select class="form-control" name="code_id" id="">
+                                            @foreach ($shop->codes as $code)
+                                                <option value="{{ $code->id }}">{{ $code->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -46,7 +46,7 @@
                                         <input type="number" name="max_usage_times" class="form-control"
                                             placeholder="Offer max usage times" required>
                                     </div>
-                                    <input type="hidden" name="page" value="code">
+                                    <input type="hidden" name="page" value="shop">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-light">Add</button>
@@ -73,9 +73,6 @@
                                     @csrf
                                     @method('PUT')@csrf
                                     <div class="form-group">
-                                        <input type="hidden" name="code_id" value="{{ $code->id }}">
-                                    </div>
-                                    <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Offer name"
                                             required>
                                     </div>
@@ -87,7 +84,7 @@
                                         <input type="text" name="max_usage_times" class="form-control"
                                             placeholder="Offer max usage times" required>
                                     </div>
-                                    <input type="hidden" name="page" value="code">
+                                    <input type="hidden" name="page" value="shop">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -103,7 +100,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th> Shop Name</th>
+                            <th> Code Name</th>
                             <th> Name</th>
                             <th> Amount</th>
                             <th> Max usage times</th>
@@ -112,10 +109,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($code->offers as $offer)
-                            <tr data-offer-id="{{ $offer->id }}" data-code-id="{{ $offer->code->id }}"
-                                data-shop-id="{{ $offer->shop->id }}">
-                                <td class=" offer-shop_id">{{ $offer->shop->name }}</td>
+                        @foreach ($shop->offers as $offer)
+                            <tr data-offer-id="{{ $offer->id }}">
+                                <td class=" offer-shop_id">{{ $offer->code->name }}</td>
                                 <td class=" offer-name">{{ $offer->name }}</td>
                                 <td class=" offer-amount">{{ $offer->amount }}</td>
                                 <td class=" offer-max_usage_times">{{ $offer->max_usage_times }}</td>
@@ -128,7 +124,7 @@
                                     <form action="{{ route('offers.destroy', ['offer' => $offer->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="page" value="code">
+                                        <input type="hidden" name="page" value="shop">
                                         <button type="submit" class="ml-1 rounded btn-sm btn btn-dark">Delete</button>
                                     </form>
                                 </td>
@@ -142,13 +138,6 @@
     <script>
         $(document).ready(function() {
             $('.btn-edit').on('click', function() {
-
-                var ShopId = $(this).closest('tr').data('shop-id');
-                $('#editModal select[name="shop_id"]').val(ShopId);
-
-                var CodeId = $(this).closest('tr').data('code-id');
-                $('#editModal select[name="code_id"]').val(CodeId);
-
                 var OfferName = $(this).closest("tr").find(".offer-name").text();
                 $('#editModal input[name="name"]').val(OfferName);
                 var OfferAmount = $(this).closest("tr").find(".offer-amount").text();

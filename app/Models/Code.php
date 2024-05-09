@@ -13,7 +13,6 @@ class Code extends Model
 
     protected $fillable = [
         'name',
-        'shop_id',
         'unit_cost'
     ];
 

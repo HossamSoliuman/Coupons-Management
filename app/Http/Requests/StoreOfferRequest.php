@@ -29,7 +29,7 @@ class StoreOfferRequest extends FormRequest
             'name' => ['string', 'max:255', 'required'],
             'amount' => ['string', 'max:255', 'required'],
             'max_usage_times' => ['integer', 'required'],
-            'is_code_page' => 'nullable',
+            'page' => 'nullable',
         ];
     }
 }

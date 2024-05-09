@@ -20,32 +20,41 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <form action="{{ route('codes.shops.store', ['code' => $code->id]) }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="is_shop_page" value="1">
-                                    <div class="form-group">
-                                        <input type="hidden" name="code_id" value="{{ $code->id }}">
-                                    </div>
-                                    @if (!$shops)
-                                        <p>There are no more shops</p>
-                                    @else
+                            @if (!$shops->count())
+                                <div class="modal-body">
+                                    <p>There are no shops available</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm rounded btn-dark"
+                                        data-dismiss="modal">Close</button>
+                                </div>
+                            @else
+                                <div class="modal-body">
+                                    <form action="{{ route('codes.shops.store', ['code' => $code->id]) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="is_shop_page" value="1">
                                         <div class="form-group">
-                                            <select name="shop_id" id="" class="form-control"
-                                                placeholder="Select Shop">
+                                            <input type="hidden" name="code_id" value="{{ $code->id }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select name="shop_id" class="form-control" id="" required>
+                                                <option value="" selected disabled>Select Shop</option>
                                                 @foreach ($shops as $shop)
                                                     <option value="{{ $shop->id }}">{{ $shop->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                    @endif
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-light">Submit</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark"
-                                    data-dismiss="modal">Close</button>
-                                </form>
-                            </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-sm btn-light">Submit</button>
+                                    <button type="button" class="btn btn-sm rounded btn-dark"
+                                        data-dismiss="modal">Close</button>
+                                    </form>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
