@@ -29,6 +29,27 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger d-inline top-right-alert" role="alert">
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
+    <script>
+        setTimeout(function() {
+            $(".alert").alert('close');
+        }, 5000);
+    </script>
+    <style>
+        .top-right-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             @include('layouts.sidebar')

@@ -2,8 +2,10 @@
 @section('content')
     <div class="container mt-5">
         <div class="row justify-content-center mt-5">
+
             <div class="col-md-11">
                 <h1>Codes</h1>
+
                 <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal"
                     data-target="#staticBackdrop">
                     Create a new Code
