@@ -60,7 +60,8 @@ class ShopController extends LichtBaseController
         $code_id = $request->code_id;
         CodeShop::create([
             'shop_id' => $shop_id,
-            'code_id' => $code_id
+            'code_id' => $code_id,
+            'unit_cost' => $request->unit_cost
         ]);
         return redirect()->route('shops.show', ['shop' => $shop_id]);
     }

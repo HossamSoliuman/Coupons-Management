@@ -11,6 +11,7 @@ class CodeShop extends Model
     public $table = 'code_shop';
     protected $fillable = [
         'code_id',
-        'shop_id'
+        'shop_id',
+        'unit_cost'
     ];
 }

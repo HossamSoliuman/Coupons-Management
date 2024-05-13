@@ -45,7 +45,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <div class="form-group">
+                                            <input type="number" name="unit_cost" value="{{ $code->unit_cost }}"
+                                                class="form-control" placeholder="Price for each one" required>
+                                        </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-sm btn-light">Submit</button>
@@ -64,6 +67,7 @@
                             <th> Name</th>
                             <th> Address</th>
                             <th> Number </th>
+                            <th>Price per unit</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -73,6 +77,7 @@
                                 <td class=" code-name">{{ $shop->name }}</td>
                                 <td class=" code-used-times">{{ $shop->address }}</td>
                                 <td class=" code-unit-cost">{{ $shop->number }}</td>
+                                <td>{{ $shop->pivot->unit_cost }}</td>
                                 <td class="d-flex">
                                     <form action="{{ route('codes.shops.destroy', ['code' => $code->id]) }}"
                                         method="post">

@@ -1588,16 +1588,16 @@
         },
         {
             "name": "hossamsoliuman/licht",
-            "version": "1.13.1",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HossamSoliuman/licht.git",
-                "reference": "3c20d0688dcd90e9cc57c909f3d54f6effbf8adf"
+                "reference": "802437c28b82570bfca6359fde6fdc7410e223f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HossamSoliuman/licht/zipball/3c20d0688dcd90e9cc57c909f3d54f6effbf8adf",
-                "reference": "3c20d0688dcd90e9cc57c909f3d54f6effbf8adf",
+                "url": "https://api.github.com/repos/HossamSoliuman/licht/zipball/802437c28b82570bfca6359fde6fdc7410e223f4",
+                "reference": "802437c28b82570bfca6359fde6fdc7410e223f4",
                 "shasum": ""
             },
             "require": {
@@ -1630,9 +1630,9 @@
             "description": "CRUDs generator",
             "support": {
                 "issues": "https://github.com/HossamSoliuman/licht/issues",
-                "source": "https://github.com/HossamSoliuman/licht/tree/v1.13.1"
+                "source": "https://github.com/HossamSoliuman/licht/tree/v1.14.0"
             },
-            "time": "2024-02-03T15:23:48+00:00"
+            "time": "2024-04-27T16:52:26+00:00"
         },
         {
             "name": "khaled.alshamaa/ar-php",

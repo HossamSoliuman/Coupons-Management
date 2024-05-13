@@ -42,7 +42,12 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <input type="number" name="unit_cost" class="form-control"
+                                                placeholder="Price for each one" required>
+                                        </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-sm btn-light">Add</button>
                                     <button type="button" class="btn btn-sm rounded btn-dark"
@@ -107,7 +112,7 @@
                             <tr data-code-id="{{ $code->id }}" data-shop-id="{{ $shop->id }}">
                                 <td class=" code-name">{{ $code->name }}</td>
                                 <td class=" code-used-times">{{ $code->used_times }}</td>
-                                <td class=" code-unit-cost">{{ $code->unit_cost }}</td>
+                                <td class=" code-unit-cost">{{ $code->pivot->unit_cost }}</td>
                                 <td class="d-flex">
                                     <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}"
                                         method="post">
@@ -147,4 +152,30 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeSelect = document.querySelector('select[name="code_id"]');
+            const unitCostInput = document.querySelector('input[name="unit_cost"]');
+
+            codeSelect.addEventListener('change', function() {
+                const codeId = this.value;
+                fetch(`/codes/${codeId}/unit-cost`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success === 1 && data.hasOwnProperty('data')) {
+                            unitCostInput.value = data.data;
+                        } else {
+                            console.error('Invalid response format:', data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching unit cost:', error);
+                    });
+            });
+            codeSelect.dispatchEvent(new Event('change'));
+        });
+    </script>
+
+
+
 @endsection

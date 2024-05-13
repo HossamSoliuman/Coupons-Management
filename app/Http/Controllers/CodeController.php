@@ -63,6 +63,7 @@ class CodeController extends LichtBaseController
     }
     public function shops(Code $code)
     {
+        $code->load('shops');
         $shops = Shop::whereNotIn('id', $code->shops->pluck('id'))->get();
         return view('code_shops', compact('code', 'shops'));
     }
@@ -71,7 +72,8 @@ class CodeController extends LichtBaseController
     {
         CodeShop::create([
             'code_id' => $code,
-            'shop_id' => $request->shop_id
+            'shop_id' => $request->shop_id,
+            'unit_cost' => $request->unit_cost,
         ]);
         return redirect()->route('codes.shops', ['code' => $code]);
     }
@@ -79,5 +81,9 @@ class CodeController extends LichtBaseController
     {
         CodeShop::where('shop_id', $request->shop_id)->where('code_id', $code)->delete();
         return redirect()->route('codes.shops', ['code' => $code]);
+    }
+    public  function unitCost(Code $code)
+    {
+        return $this->apiResponse($code->unit_cost);
     }
 }
