@@ -10,16 +10,7 @@ use Illuminate\Http\Request;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use Spatie\SimpleExcel\Sheet;
-use OpenSpout\Common\Entity\Style\Color;
-use OpenSpout\Common\Entity\Style\CellAlignment;
-use OpenSpout\Common\Entity\Style\Style;
-use OpenSpout\Common\Entity\Style\Border;
-use OpenSpout\Common\Entity\Style\BorderPart;
 
-//code shop offer offerUsage
-//output shop used-times unit-cost total-cost
-//
 class ExportController extends Controller
 {
     public function exportPdf(Code $code)
@@ -121,24 +112,6 @@ class ExportController extends Controller
         $offersUsagesDetails = OfferUsage::with('offer.code')->whereIn('offer_id', $offerIds)->orderBy('id', 'desc')->get();
         $filePath = storage_path('app/' . $fileName . '.xlsx');
         $writer = SimpleExcelWriter::create($filePath);
-
-        // Style
-        // $border = new Border(
-        //     new BorderPart(Border::BOTTOM, Color::LIGHT_BLUE, Border::WIDTH_THIN, Border::STYLE_SOLID),
-        //     new BorderPart(Border::LEFT, Color::LIGHT_BLUE, Border::WIDTH_THIN, Border::STYLE_SOLID),
-        //     new BorderPart(Border::RIGHT, Color::LIGHT_BLUE, Border::WIDTH_THIN, Border::STYLE_SOLID),
-        //     new BorderPart(Border::TOP, Color::LIGHT_BLUE, Border::WIDTH_THIN, Border::STYLE_SOLID)
-        // );
-
-        // $style = (new Style())
-        //     ->setFontBold()
-        //     ->setFontSize(15)
-        //     ->setFontColor(Color::BLUE)
-        //     ->setShouldWrapText()
-        //     ->setBackgroundColor(Color::YELLOW)
-        //     ->setBorder($border);
-
-        // Adding Rows
         $writer->addRow(['اسم الكود', 'تكلفة الوحدة', 'عدد المرات المستخدمة', 'التكلفة الإجمالية']);
         $totalUsedTimes = 0;
         $totalCost = 0;

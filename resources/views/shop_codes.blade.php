@@ -20,7 +20,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            @if (!$codes->count())
+                            @if (!$notAssoCodes->count())
                                 <div class="modal-body">
                                     <p>There are no codes available</p>
                                 </div>
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="form-group">
                                             <select name="code_id" id="" class="form-control" required>
-                                                @foreach ($codes as $code)
+                                                @foreach ($notAssoCodes as $code)
                                                     <option value="{{ $code->id }}">{{ $code->name }}</option>
                                                 @endforeach
                                             </select>
@@ -112,7 +112,7 @@
                             <tr data-code-id="{{ $code->id }}" data-shop-id="{{ $shop->id }}">
                                 <td class=" code-name">{{ $code->name }}</td>
                                 <td class=" code-used-times">{{ $code->used_times }}</td>
-                                <td class=" code-unit-cost">{{ $code->pivot->unit_cost }}</td>
+                                <td class=" code-unit-cost">{{ $code->unit_cost }}</td>
                                 <td class="d-flex">
                                     <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}"
                                         method="post">
