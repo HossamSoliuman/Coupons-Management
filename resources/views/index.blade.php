@@ -1,20 +1,22 @@
 @extends('layouts.admin')
 
 @section('content')
+    <a href="{{ url('lang/en') }}">{{ __('messages.switch_to_english') }}</a>
+    <a href="{{ url('lang/ar') }}">{{ __('messages.switch_to_arabic') }}</a>
     <canvas id="myChart" width="400" height="200"></canvas>
 
     <div class="table-container">
-        <h2>Offer Usage Details</h2>
+        <h2>{{ __('messages.offer_usage_details') }}</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Phone Number</th>
-                    <th>Code Name</th>
-                    <th>Shop Name</th>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Time</th>
-                    <th>Time Difference</th>
+                    <th>{{ __('messages.phone_number') }}</th>
+                    <th>{{ __('messages.code_name') }}</th>
+                    <th>{{ __('messages.shop_name') }}</th>
+                    <th>{{ __('messages.name') }}</th>
+                    <th>{{ __('messages.amount') }}</th>
+                    <th>{{ __('messages.time') }}</th>
+                    <th>{{ __('messages.time_difference') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +57,7 @@
                 data: {
                     labels: intervals,
                     datasets: [{
-                        label: 'Offer Usage',
+                        label: '{{ __('messages.offer_usage') }}',
                         data: counts,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
