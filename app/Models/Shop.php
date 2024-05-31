@@ -17,12 +17,9 @@ class Shop extends Model
         'number',
     ];
 
-
-
-
     public function codes()
     {
-        return $this->belongsToMany(Code::class);
+        return $this->belongsToMany(Code::class)->withPivot(['unit_cost']);
     }
 
     public function offers()

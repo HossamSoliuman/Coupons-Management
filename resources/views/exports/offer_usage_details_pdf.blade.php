@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offer Usage Details PDF</title>
+    <title>Offer Usage Details</title>
     <style>
         /* Define your styles here */
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
         th,
@@ -22,9 +23,45 @@
 
 <body>
     <h1>{{ $code->name }}</h1>
-    <p> Total used times: {{ $code->used_times }} </p>
-    <p> Cost per code : {{ $code->unit_cost }} </p>
-    <p> Total cost: {{ $code->used_times * $code->unit_cost }} </p>
+    <h2>Shops Usage Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Shop Name</th>
+                <th>Unit Cost</th>
+                <th>Used Times</th>
+                <th>Total Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($shopsUsage as $shopUsage)
+                <tr>
+                    <td>{{ $shopUsage['shop_name'] }}</td>
+                    <td>{{ $shopUsage['unit_cost'] }}</td>
+                    <td>{{ $shopUsage['used_times'] }}</td>
+                    <td>{{ $shopUsage['total_cost'] }}</td>
+                </tr>
+            @endforeach
+            <tr>
+                <td colspan="2" style="text-align: center;">Total</td>
+                <td>
+                    @php
+                        $totalUsedTimes = array_sum(array_column($shopsUsage, 'used_times'));
+                        echo $totalUsedTimes;
+                    @endphp
+                </td>
+
+                <td>
+                    @php
+                        $totalCost = array_sum(array_column($shopsUsage, 'total_cost'));
+                        echo $totalCost;
+                    @endphp
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Offer Usage Details</h2>
     <table>
         <thead>
             <tr>
@@ -49,6 +86,7 @@
             @endforeach
         </tbody>
     </table>
+
 </body>
 
 </html>

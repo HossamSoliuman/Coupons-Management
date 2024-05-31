@@ -13,14 +13,15 @@ class Code extends Model
 
     protected $fillable = [
         'name',
-        'unit_cost'
+        'unit_cost',
+        'total_cost'
     ];
 
     protected $append = ['used_times'];
 
     public function shops()
     {
-        return $this->belongsToMany(Shop::class);
+        return $this->belongsToMany(Shop::class)->withPivot(['unit_cost']);
     }
 
     public function offers()

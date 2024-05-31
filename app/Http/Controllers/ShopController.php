@@ -32,9 +32,24 @@ class ShopController extends LichtBaseController
     public function show(Shop $shop)
     {
         $shop->load('codes');
-        $codes = Code::whereNotIn('id', $shop->codes->pluck('id'))->get();
-        return view('shop_codes', compact('shop', 'codes'));
+        $notAssoCodes = Code::whereNotIn('id', $shop->codes->pluck('id'))->get();
+        $codes = [];
+        foreach ($shop->codes as $code) {
+            $CodeShopOfferIds = Offer::where('shop_id', $shop->id)->where('code_id', $code->id)->pluck('id')->toArray();
+            $codeShopOffersUsage = OfferUsage::whereIn('offer_id', $CodeShopOfferIds)->count();
+            $usedTimes = $codeShopOffersUsage;
+            $codes[] = (object)[
+                'id' => $code->id,
+                'name' => $code->name,
+                'used_times' => $usedTimes,
+                'unit_cost' => $code->pivot->unit_cost
+            ];
+        }
+        $shop->codes = collect($codes);
+        return view('shop_codes', compact('shop', 'notAssoCodes'));
     }
+
+
 
     public function update(UpdateShopRequest $request, Shop $shop)
     {
@@ -60,7 +75,8 @@ class ShopController extends LichtBaseController
         $code_id = $request->code_id;
         CodeShop::create([
             'shop_id' => $shop_id,
-            'code_id' => $code_id
+            'code_id' => $code_id,
+            'unit_cost' => $request->unit_cost
         ]);
         return redirect()->route('shops.show', ['shop' => $shop_id]);
     }

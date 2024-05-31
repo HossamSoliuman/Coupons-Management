@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
+use App\Models\Code;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('codes/{code}/shops', [CodeController::class, 'shops'])->name('codes.shops');
     Route::post('codes/{code}/shops', [CodeController::class, 'addShop'])->name('codes.shops.store');
     Route::delete('codes/{code}/shops', [CodeController::class, 'removeShop'])->name('codes.shops.destroy');
+    Route::get('codes/{code}/unit-cost', [CodeController::class, 'unitCost']);
 
     //shop codes
     Route::get('shops/{shop}/codes', [ShopController::class, 'codes'])->name('shops.codes');
