@@ -85,13 +85,6 @@
 
                                     <div class="d-flex justify-content-around">
                                         <h5 class="card-title">{{ $code->name }}</h5>
-                                        <h5>
-                                            <span class="badge badge-light badge-pill">{{ $code->used_times }}<i
-                                                    class="bi bi-person-fill-check"></i></span>
-                                            <span
-                                                class="badge badge-light badge-pill">{{ $code->used_times * $code->unit_cost }}
-                                                <i class="bi bi-currency-dollar"></i></span>
-                                        </h5>
                                     </div>
                                     <div class="row">
                                         <a href="{{ route('codes.offers.usage', ['code' => $code->id]) }}"

@@ -30,4 +30,8 @@ class Offer extends Model
     {
         return $this->belongsTo(Shop::class);
     }
+    public function offerUsage()
+    {
+        return $this->hasMany(offerUsage::class);
+    }
 }
