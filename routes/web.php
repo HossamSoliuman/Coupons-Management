@@ -6,19 +6,13 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\GetCodeOffer;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\MatchController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ShopController;
-use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Finder\Iterator\FilecontentFilterIterator;
 use App\Http\Controllers\ExportController;
 
 /*
@@ -47,6 +41,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('offers', OfferController::class);
     Route::resource('users', UserController::class);
     Route::get('shops/{shop}codes/usage', [ShopController::class, 'codesUsages'])->name('shops.codes.usages');
+
+    Route::get('shops/{shop}/offers', [ShopController::class, 'offers'])->name('shops.offers');
+    //code shops
+    Route::get('codes/{code}/shops', [CodeController::class, 'shops'])->name('codes.shops');
+    Route::post('codes/{code}/shops', [CodeController::class, 'addShop'])->name('codes.shops.store');
+    Route::delete('codes/{code}/shops', [CodeController::class, 'removeShop'])->name('codes.shops.destroy');
+
+    //shop codes
+    Route::get('shops/{shop}/codes', [ShopController::class, 'codes'])->name('shops.codes');
+    Route::post('shops/codes', [ShopController::class, 'addCode'])->name('shops.codes.store');
+    Route::delete('shops/{shop}/codes', [ShopController::class, 'removeCode'])->name('shops.codes.destroy');
 
     Route::get('code/{code}/export/pdf', [ExportController::class, 'exportPdf'])->name('export.pdf');
     Route::get('code/{code}/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');

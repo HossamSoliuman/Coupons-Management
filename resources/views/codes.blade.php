@@ -2,9 +2,12 @@
 @section('content')
     <div class="container mt-5">
         <div class="row justify-content-center mt-5">
+
             <div class="col-md-11">
                 <h1>Codes</h1>
-                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal"
+                    data-target="#staticBackdrop">
                     Create a new Code
                 </button>
 
@@ -23,14 +26,6 @@
                                 <form action="{{ route('codes.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <select class="form-control" name="shop_id" id="">
-                                            @foreach ($shops as $shop)
-                                                <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                    <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Code name"
                                             required>
                                     </div>
@@ -41,7 +36,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-light">Submit</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -63,14 +59,6 @@
                                     @csrf
                                     @method('PUT')@csrf
                                     <div class="form-group">
-                                        <select class="form-control" name="shop_id" id="">
-                                            @foreach ($shops as $shop)
-                                                <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                    <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Code name"
                                             required>
                                     </div>
@@ -81,8 +69,10 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save
+                                    Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -103,28 +93,27 @@
                                                 <i class="bi bi-currency-dollar"></i></span>
                                         </h5>
                                     </div>
-                                    <p class="card-text text-center"><i class="bi bi-cart2"></i> {{ $code->shop->name }}
-                                    </p>
-
-
                                     <div class="row">
-                                        <button type="button" class="btn btn-light btn-sm btn-edit mr-2"
-                                            data-toggle="modal" data-target="#editModal"
-                                            data-code-id="{{ $code->id }}" data-shop-id="{{ $code->shop->id }}"
-                                            data-unit-cost="{{ $code->unit_cost }}">
-                                            Edit
-                                        </button>
-                                        <a href="{{ route('codes.show', ['code' => $code->id]) }}"
-                                            class="btn btn-light btn-sm">
-                                            Offers
-                                        </a>
                                         <a href="{{ route('codes.offers.usage', ['code' => $code->id]) }}"
                                             class="btn btn-light btn-sm">
                                             Usage
                                         </a>
+                                        <a href="{{ route('codes.show', ['code' => $code->id]) }}"
+                                            class="btn btn-light btn-sm">
+                                            Offers
+                                        </a>
+                                        <a href="{{ route('codes.shops', ['code' => $code->id]) }}"
+                                            class="btn btn-light btn-sm">
+                                            Shops
+                                        </a>
                                     </div>
                                     <div class="row mt-2 w-100">
-                                        <form class="w-100" action="{{ route('codes.destroy', ['code' => $code->id]) }}"
+                                        <button type="button" class="btn btn-light btn-sm btn-edit col-4"
+                                            data-toggle="modal" data-target="#editModal"
+                                            data-code-id="{{ $code->id }}" data-unit-cost="{{ $code->unit_cost }}">
+                                            Edit
+                                        </button>
+                                        <form class="col" action="{{ route('codes.destroy', ['code' => $code->id]) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')

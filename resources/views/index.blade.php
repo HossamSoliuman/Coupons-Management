@@ -34,42 +34,21 @@
         <!-- Pagination Links -->
         {{ $offersUsagesDetails->links() }}
     </div>
-    <div class="table-container mt-5">
-        <h2>Offer Usage Details</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Interval Start</th>
-                    <th>Offer Count</th>
-                </tr>
-            </thead>
-            <tbody id="offerUsageTableBody">
-
-            </tbody>
-        </table>
-    </div>
 @endsection
 
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-        // Fetch data from the server
         fetch('index-data')
             .then(response => response.json())
             .then(data => {
-                // Update chart
                 updateChart(data);
-
-                // Update table
-                updateTable(data);
             })
             .catch(error => console.error('Error fetching data:', error));
 
         function updateChart(data) {
             const intervals = data.map(item => item.interval_start);
             const counts = data.map(item => item.count);
-
-            // Create chart
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'line',
@@ -92,20 +71,6 @@
                         }]
                     }
                 }
-            });
-        }
-
-        function updateTable(data) {
-            const tableBody = document.getElementById('offerUsageTableBody');
-            tableBody.innerHTML = ''; // Clear existing rows
-
-            data.forEach(offerUsage => {
-                const row = `
-                    <tr>
-                        <td>${offerUsage.interval_start}</td>
-                        <td>${offerUsage.count}</td>
-                    </tr>`;
-                tableBody.insertAdjacentHTML('beforeend', row);
             });
         }
     </script>

@@ -4,7 +4,8 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>Offers</h1>
-                <button type="button" class="rounded btn-sm mb-3 btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class="rounded btn-sm mb-3 btn btn-dark" data-toggle="modal"
+                    data-target="#staticBackdrop">
                     Create a new Offer
                 </button>
 
@@ -22,20 +23,43 @@
                             <div class="modal-body">
                                 <form action="{{ route('offers.store') }}" method="post">
                                     @csrf
-                                    <div class="form-group">
-                                        <select class="form-control" name="code_id" id="">
-                                            @foreach ($codes as $code)
-                                                <option value="{{ $code->id }}">{{ $code->name }} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <select class="form-control" name="shop_id" id="">
                                             @foreach ($shops as $shop)
                                                 <option value="{{ $shop->id }}">{{ $shop->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="code_id" id="">
+                                            @foreach ($codes as $code)
+                                                <option value="{{ $code->id }}">{{ $code->name }} </option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="shop">Select Shop:</label>
+                                            <select class="form-control" name="shop_id" id="shop">
+                                                @foreach ($shops as $shop)
+                                                    <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="code">Select Code:</label>
+                                            <select class="form-control" name="code_id" id="code">
+                                                <!-- Codes will be populated dynamically via JavaScript -->
+                                            </select>
+                                            <div class="spinner-border text-primary" role="status" id="code-loading"
+                                                style="display: none;">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
 
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Offer name"
@@ -47,12 +71,13 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="number" name="max_usage_times" class="form-control"
-                                        placeholder="Offer max usage times" required>
+                                            placeholder="Offer max usage times" required>
                                     </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-light">Submit</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -74,20 +99,6 @@
                                     @csrf
                                     @method('PUT')@csrf
                                     <div class="form-group">
-                                        <select class="form-control" name="code_id" id="">
-                                            @foreach ($codes as $code)
-                                                <option value="{{ $code->id }}">{{ $code->name }} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="form-control" name="shop_id" id="">
-                                            @foreach ($shops as $shop)
-                                                <option value="{{ $shop->id }}">{{ $shop->name }} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Offer name"
                                             required>
                                     </div>
@@ -103,8 +114,10 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light btn-sm" id="saveChangesBtn">Save Changes</button>
-                                <button type="button" class="btn btn-sm rounded btn-dark" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-light btn-sm" id="saveChangesBtn">Save
+                                    Changes</button>
+                                <button type="button" class="btn btn-sm rounded btn-dark"
+                                    data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -175,6 +188,39 @@
             $('#saveChangesBtn').on('click', function() {
                 $('#editForm').submit();
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            fetchCodes();
+
+            $('#shop').on('change', function() {
+                fetchCodes();
+            });
+
+            function fetchCodes() {
+                var shopId = $('#shop').val();
+                $('#code').prop('disabled', true);
+                $('#code-loading').show();
+                $.ajax({
+                    url: "{{ route('shops.codes', ['shop' => ':shopId']) }}".replace(':shopId', shopId),
+                    type: 'GET',
+                    success: function(response) {
+                        $('#code').empty();
+                        $.each(response, function(index, code) {
+                            $('#code').append('<option value="' + code.id + '">' + code.name +
+                                '</option>');
+                        });
+                        $('#code').prop('disabled', false);
+                        $('#code-loading').hide();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        $('#code').prop('disabled', false);
+                        $('#code-loading').hide();
+                    }
+                });
+            }
         });
     </script>
 @endsection

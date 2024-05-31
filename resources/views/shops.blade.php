@@ -4,7 +4,8 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-11">
                 <h1>Shops</h1>
-                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+                <button type="button" class=" mb-3 btn btn-sm rounded btn-dark" data-toggle="modal"
+                    data-target="#staticBackdrop">
                     Create a new Shop
                 </button>
 
@@ -73,7 +74,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save Changes</button>
+                                <button type="button" class="btn btn-sm btn-light" id="saveChangesBtn">Save
+                                    Changes</button>
                                 <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -90,18 +92,23 @@
                                     <p class="card-text">Number: {{ $shop->number }}</p>
 
                                     <div class="row">
-                                        <div class="">
-                                            <a href="{{ route('shops.show', ['shop' => $shop->id]) }}"
-                                                class="btn btn-sm btn-light btn-sm">
-                                                Codes
-                                            </a>
-                                        </div>
-                                        <div class="">
-                                            <a href="{{ route('shops.codes.usages', ['shop' => $shop->id]) }}"
-                                                class="btn btn-sm btn-light btn-sm">
-                                                Codes Usages
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('shops.show', ['shop' => $shop->id]) }}"
+                                            class="btn btn-sm btn-light btn-sm">
+                                            Codes
+                                        </a>
+
+                                        <a href="{{ route('shops.codes.usages', ['shop' => $shop->id]) }}"
+                                            class="btn btn-sm btn-light btn-sm">
+                                            Usage
+                                        </a>
+
+                                        <a href="{{ route('shops.offers', ['shop' => $shop->id]) }}"
+                                            class="btn btn-sm btn-light btn-sm">
+                                            Offers
+                                        </a>
+
+                                    </div>
+                                    <div class="row">
                                         <button type="button" class="btn btn-sm btn-light btn-sm btn-edit mr-2"
                                             data-toggle="modal" data-target="#editModal"
                                             data-shop-id="{{ $shop->id }}"><i class="bi bi-pencil-square"></i>
@@ -112,7 +119,6 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn rounded btn-sm btn-dark">Delete</button>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>

@@ -24,9 +24,9 @@ class StoreShopRequest extends FormRequest
     public function rules()
     {
         return [
-			'name' => ['string', 'max:255', 'required'],
-			'address' => ['string', 'max:255', 'required'],
-			'number' => ['string', 'max:255', 'required'],
+            'name' => ['string', 'max:255', 'required'],
+            'address' => ['string', 'max:255', 'required'],
+            'number' => ['string', 'max:255', 'required'],
         ];
     }
 }

@@ -19,15 +19,18 @@ class OfferController extends LichtBaseController
         $offers = Offer::with(['code', 'shop'])->get();
         $offers = OfferResource::collection($offers);
         $codes = Code::all();
-        $shops = Shop::all();
+        $shops = Shop::whereHas('codes')->get();
         return view('offers', compact('offers', 'codes', 'shops'));
     }
 
     public function store(StoreOfferRequest $request)
     {
         $offer = Offer::create($request->validated());
-        if ($request->is_code_page) {
-            return redirect()->route('codes.show', ['code' => $request->code_id]);
+        if ($request->page == 'code') {
+            return redirect()->route('codes.show', ['code' => $offer->code_id]);
+        };
+        if ($request->page == 'shop') {
+            return redirect()->route('shops.offers', ['shop' => $offer->shop_id]);
         };
         return redirect()->route('offers.index');
     }
@@ -40,8 +43,11 @@ class OfferController extends LichtBaseController
     public function update(UpdateOfferRequest $request, Offer $offer)
     {
         $offer->update($request->validated());
-        if ($request->is_code_page) {
-            return redirect()->route('codes.show', ['code' => $request->code_id]);
+        if ($request->page == 'code') {
+            return redirect()->route('codes.show', ['code' => $offer->code_id]);
+        };
+        if ($request->page == 'shop') {
+            return redirect()->route('shops.offers', ['shop' => $offer->shop_id]);
         };
         return redirect()->route('offers.index');
     }
@@ -49,8 +55,11 @@ class OfferController extends LichtBaseController
     public function destroy(Offer $offer, Request $request)
     {
         $offer->delete();
-        if ($request->is_code_page) {
+        if ($request->page == 'code') {
             return redirect()->route('codes.show', ['code' => $offer->code_id]);
+        };
+        if ($request->page == 'shop') {
+            return redirect()->route('shops.offers', ['shop' => $offer->shop_id]);
         };
         return redirect()->route('offers.index');
     }

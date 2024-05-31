@@ -15,10 +15,13 @@ class GetCodeOffer extends Controller
         $inputCode = $request->code;
         $inputPhone = $request->phone;
 
-        $code = Code::with('offers')
+        $code = Code::with(['offers', 'shops'])
             ->where(DB::raw('BINARY name'), $inputCode)
-            ->where('shop_id', auth()->user()->shop_id)
+            ->whereHas('shops', function ($query) {
+                $query->where('shop_id', auth()->user()->shop_id);
+            })
             ->first();
+
 
         if (!$code) {
             return response()->json(['error' => 'الرمز غير موجود'], 404);

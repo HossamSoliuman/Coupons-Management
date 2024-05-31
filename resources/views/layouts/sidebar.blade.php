@@ -1,19 +1,15 @@
 @section('styles')
     <style>
-        /* sidebar.css */
         .nav-link-custom {
             font-size: 16px;
             font-weight: bold;
             display: flex;
             align-items: flex-start;
-            /* Align items to the top */
         }
 
         .nav-link-custom i {
             margin-top: 4px;
-            /* Adjust the margin as needed */
             margin-right: 8px;
-            /* Adjust the margin as needed */
         }
     </style>
 @endsection
@@ -21,7 +17,7 @@
     <div class="position-sticky">
         <ul class="nav flex-column mt-3">
             <li class="nav-item">
-                <a class="nav-link rounded btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('admin.index') }}">
+                <a class="nav-link btn btn-light btn-block mb-2 text-left nav-link-custom" style="" href="{{ route('admin.index') }}">
                     <i class="bi bi-house-door"></i> Dashboard
                 </a>
                 <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('shops.index') }}">

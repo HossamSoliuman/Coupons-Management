@@ -13,15 +13,14 @@ class Code extends Model
 
     protected $fillable = [
         'name',
-        'shop_id',
         'unit_cost'
     ];
 
     protected $append = ['used_times'];
 
-    public function shop()
+    public function shops()
     {
-        return $this->belongsTo(Shop::class);
+        return $this->belongsToMany(Shop::class);
     }
 
     public function offers()

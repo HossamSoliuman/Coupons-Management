@@ -29,7 +29,7 @@ class UpdateOfferRequest extends FormRequest
             'name' => ['string', 'max:255', 'nullable'],
             'amount' => ['string', 'max:255', 'nullable'],
             'max_usage_times' => ['integer', 'nullable'],
-            'is_code_page' => 'nullable',
+            'page' => 'nullable',
         ];
     }
 }
