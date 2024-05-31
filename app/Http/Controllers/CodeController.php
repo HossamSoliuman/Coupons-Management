@@ -10,10 +10,9 @@ use App\Models\CodeShop;
 use App\Models\Offer;
 use App\Models\OfferUsage;
 use App\Models\Shop;
-use Hossam\Licht\Controllers\LichtBaseController;
 use Illuminate\Http\Request;
 
-class CodeController extends LichtBaseController
+class CodeController extends Controller
 {
 
     public function index()
