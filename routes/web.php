@@ -60,6 +60,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('shop/{shop}/export/pdf', [ExportController::class, 'exportPdfShop'])->name('shop.export.pdf');
     Route::get('shop/{shop}/export/excel', [ExportController::class, 'exportExcelShop'])->name('shop.export.excel');
+    
+    Route::get('lang/{locale}', function ($locale) {
+        if (in_array($locale, ['en', 'ar'])) {
+            session(['locale' => $locale]);
+        }
+        return redirect()->back();
+    });
 });
 
 
@@ -69,13 +76,4 @@ Route::middleware(['auth'])->group(function () {
         return view('get_code_offer');
     })->name('code.get_offer');
     Route::get('api/offer', GetCodeOffer::class)->name('code.offer.get');
-});
-
-Route::get('/add-user', function () {
-    User::create([
-        'name' => 'admin',
-        'email' => 'admin@gmail.com',
-        'password' => Hash::make('password'),
-        'role' => 'admin',
-    ]);
 });

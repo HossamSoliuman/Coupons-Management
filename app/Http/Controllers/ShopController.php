@@ -20,7 +20,7 @@ class ShopController extends LichtBaseController
     {
         $shops = Shop::all();
         $shops = ShopResource::collection($shops);
-        return view('shops', compact('shops'));
+        return view('shops.index', compact('shops'));
     }
 
     public function store(StoreShopRequest $request)
@@ -46,7 +46,7 @@ class ShopController extends LichtBaseController
             ];
         }
         $shop->codes = collect($codes);
-        return view('shop_codes', compact('shop', 'notAssoCodes'));
+        return view('shops.codes', compact('shop', 'notAssoCodes'));
     }
 
 
@@ -67,7 +67,7 @@ class ShopController extends LichtBaseController
         $shop->load('offers');
         $OfferIds = Offer::where('shop_id', $shop->id)->pluck('id');
         $offersUsagesDetails = OfferUsage::with('offer')->whereIn('offer_id', $OfferIds)->orderBy('id', 'desc')->paginate(10);
-        return view('shops_usages', compact('offersUsagesDetails', 'shop'));
+        return view('shops.usage', compact('offersUsagesDetails', 'shop'));
     }
     public function addCode(Request $request)
     {
@@ -96,6 +96,6 @@ class ShopController extends LichtBaseController
     public function offers(Shop $shop)
     {
         $shop->load('offers', 'codes');
-        return view('shop_offers', compact('shop'));
+        return view('shops.offers', compact('shop'));
     }
 }

@@ -1,6 +1,15 @@
 <?php
+
 return [
-    'get_offer' => 'احصل على العرض',
+    'switch_to_english' => 'الإنجليزية',
+    'switch_to_arabic' => 'العربية',
+    'offer_usage_details' => 'تفاصيل استخدام العرض',
+    'phone_number' => 'رقم الهاتف',
     'code_name' => 'اسم الكود',
-    'submit' => 'إرسال',
+    'shop_name' => 'اسم المحل',
+    'name' => 'الاسم',
+    'amount' => 'المبلغ',
+    'time' => 'الوقت',
+    'time_difference' => 'فرق الوقت',
+    'offer_usage' => 'استخدام العرض',
 ];
