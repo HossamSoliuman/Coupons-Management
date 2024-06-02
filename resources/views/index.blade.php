@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <a href="{{ url('lang/en') }}">{{ __('messages.switch_to_english') }}</a>
-    <a href="{{ url('lang/ar') }}">{{ __('messages.switch_to_arabic') }}</a>
     <canvas id="myChart" width="400" height="200"></canvas>
 
     <div class="table-container">
