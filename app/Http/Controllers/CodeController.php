@@ -20,7 +20,7 @@ class CodeController extends Controller
         $codes = Code::with('shops')->get();
         $codes = CodeResource::collection($codes);
         $shops = Shop::all();
-        return view('codes', compact('codes', 'shops'));
+        return view('codes.index', compact('codes', 'shops'));
     }
 
     public function store(StoreCodeRequest $request)
@@ -36,7 +36,7 @@ class CodeController extends Controller
     {
         $code->load('offers', 'shops');
         $shops = $code->shops;
-        return view('code_offers', compact('code', 'shops'));
+        return view('codes.offers', compact('code', 'shops'));
     }
 
     public function update(UpdateCodeRequest $request, Code $code)
@@ -58,13 +58,13 @@ class CodeController extends Controller
         $code->load('offers');
         $OfferIds = Offer::where('code_id', $code->id)->pluck('id');
         $offersUsagesDetails = OfferUsage::with('offer')->whereIn('offer_id', $OfferIds)->orderBy('id', 'desc')->paginate(10);
-        return view('code_offers_usage', compact('offersUsagesDetails', 'code'));
+        return view('codes.offers_usage', compact('offersUsagesDetails', 'code'));
     }
     public function shops(Code $code)
     {
         $code->load('shops');
         $shops = Shop::whereNotIn('id', $code->shops->pluck('id'))->get();
-        return view('code_shops', compact('code', 'shops'));
+        return view('codes.shops', compact('code', 'shops'));
     }
 
     public function addShop(Request $request, $code)

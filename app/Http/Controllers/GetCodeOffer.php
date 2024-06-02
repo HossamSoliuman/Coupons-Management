@@ -7,7 +7,6 @@ use App\Models\Code;
 use App\Models\OfferUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-// ahmed -> is code exist -> yes -> if
 class GetCodeOffer extends Controller
 {
     public function __invoke(Request $request)
