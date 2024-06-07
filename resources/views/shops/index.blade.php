@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('styles')
+
 <style>
     .page-header {
         display: flex;
@@ -8,13 +9,16 @@
         align-items: center;
         margin-bottom: 20px;
     }
-
+    .page-header h1 {
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
     .create-btn {
         border-radius: 24px;
-        background: linear-gradient(55deg, #14A14D 42.18%, #E8BF0D 114.09%);
+        background-color: #D2E5BB;
         border: none;
         padding: 7px 15px;
-        color: white;
+        color: black;
         font-size: 18px;
         font-weight: bold;
         transition: .2s;
@@ -22,7 +26,7 @@
     }
 
     .create-btn:hover {
-        background: linear-gradient(55deg, #43B370 42.18%, #f0c30f 114.09%);
+        background-color: #BBCCA6;
         transform: scale(1.05);
     }
 
@@ -37,7 +41,7 @@
 
     .first-row-links a {
         color: black;
-        margin-left: 20px;
+        margin-left: 8px;
         padding: 4px 8px;
         border-radius: 10px;
         background-color: #F8F8F8;
@@ -88,6 +92,7 @@
     }
     .modal-title {
         letter-spacing: 1px;
+        font-weight: bold;
     }
     .modal-header {
         text-align: right;
@@ -100,11 +105,16 @@
         margin: 0;
     }
 
-    .btn-save-modal, .btn-close-modal {
+    .btn-save-modal,
+    .btn-close-modal {
         border-radius: 10px;
         font-size: 16px !important;
         letter-spacing: 1px;
         padding: 5px 10px !important;
+    }
+    .btn-save-modal {
+        background-color: #3d8bfd;
+        color: white;
     }
 
     .btn-close-modal {
@@ -112,10 +122,13 @@
         color: white;
         padding: 5px 20px !important;
     }
-    .btn-close-modal:hover {
+
+    .btn-close-modal:hover, .btn-save-modal:hover {
         color: white
     }
+
 </style>
+
 @endsection
 
 @section('content')
@@ -134,7 +147,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">New Shop</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">متجر جديد</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -143,18 +156,18 @@
                             <form action="{{ route('shops.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Shop name" required>
+                                    <input type="text" name="name" class="form-control" placeholder="اسم المتجر" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control" placeholder="Shop address" required>
+                                    <input type="text" name="address" class="form-control" placeholder="عنوان المتجر" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="number" class="form-control" placeholder="Shop number" required>
+                                    <input type="text" name="number" class="form-control" placeholder="رقم المتجر" required>
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-sm btn-light">Submit</button>
-                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-save-modal">ادخال البيانات</button>
+                            <button type="button" class="btn btn-close-modal" data-dismiss="modal">اغلاق</button>
                             </form>
                         </div>
                     </div>
@@ -176,18 +189,18 @@
                                 @csrf
                                 @method('PUT')@csrf
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Shop name" required>
+                                    <input type="text" name="name" class="form-control " placeholder="اسم المتجر" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control" placeholder="Shop address" required>
+                                    <input type="text" name="address" class="form-control" placeholder="عنوان المتجر" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="number" class="form-control" placeholder="Shop number" required>
+                                    <input type="text" name="number" class="form-control" placeholder="رقم المتجر" required>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-save-modal " id="saveChangesBtn">حقظ التغييرات</button>
+                            <button type="button" class="btn btn-save-modal" id="saveChangesBtn">حفظ التغييرات</button>
                             <button type="button" class="btn  btn-close-modal " data-dismiss="modal">إغلاق</button>
                         </div>
                     </div>

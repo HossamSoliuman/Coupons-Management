@@ -2,7 +2,7 @@
 
 <style>
         #myChart {
-            margin: 25px auto;
+            margin: 35px auto 25px;
         }
         .main-title {
             font-weight: bold;
@@ -13,8 +13,8 @@
         }
 
         .pagination .page-item.active .page-link {
-            background-color: #04512D !important;
-            color: white;
+            background-color: #d2e5bb !important;
+            color: black !important;
         }
 </style>
 
@@ -76,7 +76,7 @@
                     datasets: [{
                         label: '{{ __('messages.offer_usage') }}',
                         data: counts,
-                        backgroundColor: 'rgba(155, 175, 163, .6)',
+                        backgroundColor: 'rgba(210, 229, 187, .6)',
                         borderColor: 'rgba(7, 56, 27, 1)',
                         borderWidth: 1
                     }]

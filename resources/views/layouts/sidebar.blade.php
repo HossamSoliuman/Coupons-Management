@@ -1,12 +1,13 @@
 <style>
     .nav-color {
-        background-color: #062D16 !important;
+        background-color: #fe759f !important;
         height: 100vh;
         position: fixed;
         top: 0px;
         bottom: 0;
         display: flex;
         flex-direction: column;
+
     }
 
     .nav-item {
@@ -16,10 +17,12 @@
     }
 
     .nav-item:hover {
-        background-color: #07381B;
+        background-color: #FE9EBB;
     }
     .nav-item:last-of-type:hover {
         background-color: #ff4d4f;
+        color: black;
+
     }
     .nav-item button {
         all: unset;
@@ -32,12 +35,12 @@
         gap: 25px;
         padding: 10px;
         padding-right: 30px;
-        color: #FFFFFF;
+        color: black;
         font-size: 20px;
         font-weight: bold;
     }
     .active-nav-item,   .active-nav-item:hover {
-        background-color: #04512D;
+        background-color: #EAFFD0;
     }
 
 </style>
