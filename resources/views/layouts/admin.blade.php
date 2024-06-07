@@ -50,7 +50,7 @@
             z-index: 9999;
         }
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid" dir="rtl">
         <div class="row">
             @include('layouts.sidebar')
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh;">

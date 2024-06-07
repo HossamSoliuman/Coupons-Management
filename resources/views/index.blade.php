@@ -1,10 +1,29 @@
 @extends('layouts.admin')
 
-@section('content')
-    <canvas id="myChart" width="400" height="200"></canvas>
+<style>
+        #myChart {
+            margin: 25px auto;
+        }
+        .main-title {
+            font-weight: bold;
+            text-align: justify;
+        }
+        .pagination {
+            justify-content: end;
+        }
 
-    <div class="table-container">
-        <h2>{{ __('messages.offer_usage_details') }}</h2>
+        .pagination .page-item.active .page-link {
+            background-color: #04512D !important;
+            color: white;
+        }
+</style>
+
+@section('content')
+    <canvas id="myChart" width="350" height="100" ></canvas>
+
+    <div class="table-container" >
+        <!-- <h2>{{ __('messages.offer_usage_details') }}</h2> -->
+        <h2 class="main-title">تفاصيل استخدام العروض</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -57,8 +76,8 @@
                     datasets: [{
                         label: '{{ __('messages.offer_usage') }}',
                         data: counts,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(155, 175, 163, .6)',
+                        borderColor: 'rgba(7, 56, 27, 1)',
                         borderWidth: 1
                     }]
                 },
