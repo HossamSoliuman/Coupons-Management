@@ -148,6 +148,9 @@
         margin: 0;
         padding: 0;
     }
+    th {
+        font-weight: 500 !important;
+    }
     td, th{
         text-align: center !important;
     }
