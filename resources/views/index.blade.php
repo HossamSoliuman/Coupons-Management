@@ -16,6 +16,10 @@
             background-color: #d2e5bb !important;
             color: black !important;
         }
+        th {
+        font-size: 16px !important;
+        font-weight: 500 !important;
+    }   
 </style>
 
 @section('content')

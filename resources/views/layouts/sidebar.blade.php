@@ -19,11 +19,13 @@
     .nav-item:hover {
         background-color: #FE9EBB;
     }
+
     .nav-item:last-of-type:hover {
         background-color: #ff4d4f;
         color: black;
 
     }
+
     .nav-item button {
         all: unset;
     }
@@ -39,38 +41,38 @@
         font-size: 20px;
         font-weight: bold;
     }
-    .active-nav-item,   .active-nav-item:hover {
+
+    .active-nav-item,
+    .active-nav-item:hover {
         background-color: #EAFFD0;
     }
-
 </style>
-
 <nav id="sidebar" class="col-md-3 col-lg-2 position-sticky d-md-block nav-color p-0">
     <div class="mx-auto" style="max-width: 160px; text-align: center;">
-        <img src="logo-trans.png" alt="Logo" class="my-4 mw-100" />
+        <img src="{{ asset('logo-trans.png') }}" alt="Logo" class="my-4 mw-100" />
     </div>
     <ul class="nav d-flex flex-column align-items-start p-2 flex-grow-1">
-        <li class="nav-item {{ request()->routeIs('admin.index') ? 'active-nav-item' : '' }}">
+        <li class="nav-item {{ Request::segment(1) == 'index' ? 'active-nav-item' : '' }}">
             <a href="{{ route('admin.index') }}">
                 <i class="bi bi-house-door"></i> الرئيسية
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('shops.index') ? 'active-nav-item' : '' }}">
+        <li class="nav-item {{ Request::segment(1) == 'shops' ? 'active-nav-item' : '' }}">
             <a href="{{ route('shops.index') }}">
                 <i class="bi bi-shop"></i> المتاجر
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('codes.index') ? 'active-nav-item' : '' }}">
+        <li class="nav-item {{ Request::segment(1) == 'codes' ? 'active-nav-item' : '' }}">
             <a href="{{ route('codes.index') }}">
                 <i class="bi bi-123"></i> أكواد الخصم
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('offers.index') ? 'active-nav-item' : '' }}">
+        <li class="nav-item {{ Request::segment(1) == 'offers' ? 'active-nav-item' : '' }}">
             <a href="{{ route('offers.index') }}">
                 <i class="bi bi-gift"></i> العروض
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('users.index') ? 'active-nav-item' : '' }}">
+        <li class="nav-item {{ Request::segment(1) == 'users' ? 'active-nav-item' : '' }}">
             <a href="{{ route('users.index') }}">
                 <i class="bi bi-person"></i> المستخدمين
             </a>
