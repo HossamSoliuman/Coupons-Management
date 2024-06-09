@@ -250,17 +250,15 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('.btn-edit').on('click', function() {
+        $('.edit-btn').on('click', function() {
             var codeId = $(this).data('code-id');
-            var codeName = $(this).closest(".card").find(".card-title").text();
-            var shopId = $(this).data('shop-id');
+            var codeName = $(this).closest(".card").find(".card-title").text().trim();
             var unitCost = $(this).data('unit-cost');
 
             $('#editModal input[name="name"]').val(codeName);
-            $('#editModal select[name="shop_id"]').val(shopId);
             $('#editModal input[name="unit_cost"]').val(unitCost);
+
             $('#editForm').attr('action', '/codes/' + codeId);
-            $('#editModal').modal('show');
         });
 
         $('#saveChangesBtn').on('click', function() {
@@ -268,4 +266,5 @@
         });
     });
 </script>
+
 @endsection

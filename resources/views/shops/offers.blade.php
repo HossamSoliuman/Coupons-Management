@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-
 @section('styles')
 
 <style>
@@ -70,7 +69,6 @@
         border-radius: 10px;
         border: none;
         padding: 4px 18px;
-        border-radius: 10px;
         letter-spacing: 1px;
         color: white;
         transition: .3s;
@@ -86,7 +84,6 @@
         border-radius: 10px;
         border: none;
         padding: 4px 18px;
-        border-radius: 10px;
         letter-spacing: 1px;
         color: white;
         transition: .3s;
@@ -137,6 +134,7 @@
     .btn-save-modal:hover {
         color: white
     }
+
     .actions {
         display: flex;
         justify-content: center;
@@ -158,14 +156,12 @@
 
 @endsection
 
-
-
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center mt-5">
         <div class="col-md-11">
             <div class="page-header">
-                <h1>عروض  : {{ $shop->name }} </h1>
+                <h1>عروض : {{ $shop->name }} </h1>
                 <button type="button" class="create-btn" data-toggle="modal" data-target="#staticBackdrop">
                     اضافة عرض جديد
                 </button>
@@ -214,6 +210,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Edit Offer Modal -->
             <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -227,7 +224,7 @@
                         <div class="modal-body">
                             <form id="editForm" method="post">
                                 @csrf
-                                @method('PUT')@csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <input type="text" name="name" class="form-control" placeholder="اسم العرض" required>
                                 </div>
@@ -235,7 +232,7 @@
                                     <input type="text" name="amount" class="form-control" placeholder="قيمة هذا العرض" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="max_usage_times" class="form-control" placeholder="أقصي حد لاستخدام هذا العرض" required>
+                                    <input type="number" name="max_usage_times" class="form-control" placeholder="أقصي حد لاستخدام هذا العرض" required>
                                 </div>
                                 <input type="hidden" name="page" value="shop">
                             </form>
@@ -251,22 +248,22 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th> اسم كود الخصم</th>
-                        <th> الاسم</th>
-                        <th> السعر</th>
-                        <th> أقصي حد للاستخدام	</th>
-                        <th> عدد مرات الاستخدام	</th>
+                        <th>اسم كود الخصم</th>
+                        <th>الاسم</th>
+                        <th>السعر</th>
+                        <th>أقصي حد للاستخدام</th>
+                        <th>عدد مرات الاستخدام</th>
                         <th>التعديل والحذف</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($shop->offers as $offer)
                     <tr data-offer-id="{{ $offer->id }}">
-                        <td class=" offer-shop_id">{{ $offer->code->name }}</td>
-                        <td class=" offer-name">{{ $offer->name }}</td>
-                        <td class=" offer-amount">{{ $offer->amount }}</td>
-                        <td class=" offer-max_usage_times">{{ $offer->max_usage_times }}</td>
-                        <td class=" offer-used_times">{{ $offer->used_times }}</td>
+                        <td class="offer-shop_id">{{ $offer->code->name }}</td>
+                        <td class="offer-name">{{ $offer->name }}</td>
+                        <td class="offer-amount">{{ $offer->amount }}</td>
+                        <td class="offer-max_usage_times">{{ $offer->max_usage_times }}</td>
+                        <td class="offer-used_times">{{ $offer->used_times }}</td>
                         <td class="actions">
                             <button type="button" class="edit-btn" data-toggle="modal" data-target="#editModal">
                                 تعديل
@@ -287,7 +284,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('.btn-edit').on('click', function() {
+        $('.edit-btn').on('click', function() {
             var OfferName = $(this).closest("tr").find(".offer-name").text();
             $('#editModal input[name="name"]').val(OfferName);
             var OfferAmount = $(this).closest("tr").find(".offer-amount").text();
@@ -300,6 +297,7 @@
             $('#editForm').attr('action', '/offers/' + OfferId);
             $('#editModal').modal('show');
         });
+
         $('#saveChangesBtn').on('click', function() {
             $('#editForm').submit();
         });

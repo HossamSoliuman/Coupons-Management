@@ -289,29 +289,30 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('.btn-edit').on('click', function() {
+        $('.edit-btn').on('click', function() {
+            var row = $(this).closest('tr');
 
-            var ShopId = $(this).closest('tr').data('shop-id');
-            $('#editModal select[name="shop_id"]').val(ShopId);
+            var shopId = row.data('shop-id');
+            var codeId = row.data('code-id');
+            var offerId = row.data('offer-id');
+            var offerName = row.find('.offer-name').text().trim();
+            var offerAmount = row.find('.offer-amount').text().trim();
+            var maxUsageTimes = row.find('.offer-max_usage_times').text().trim();
+            var usedTimes = row.find('.offer-used_times').text().trim();
 
-            var CodeId = $(this).closest('tr').data('code-id');
-            $('#editModal select[name="code_id"]').val(CodeId);
+            $('#editModal select[name="shop_id"]').val(shopId);
+            $('#editModal input[name="name"]').val(offerName);
+            $('#editModal input[name="amount"]').val(offerAmount);
+            $('#editModal input[name="max_usage_times"]').val(maxUsageTimes);
+            $('#editForm').attr('action', '/offers/' + offerId);
 
-            var OfferName = $(this).closest("tr").find(".offer-name").text();
-            $('#editModal input[name="name"]').val(OfferName);
-            var OfferAmount = $(this).closest("tr").find(".offer-amount").text();
-            $('#editModal input[name="amount"]').val(OfferAmount);
-            var OfferMax_usage_times = $(this).closest("tr").find(".offer-max_usage_times").text();
-            $('#editModal input[name="max_usage_times"]').val(OfferMax_usage_times);
-            var OfferUsed_times = $(this).closest("tr").find(".offer-used_times").text();
-            $('#editModal input[name="used_times"]').val(OfferUsed_times);
-            var OfferId = $(this).closest('tr').data('offer-id');
-            $('#editForm').attr('action', '/offers/' + OfferId);
             $('#editModal').modal('show');
         });
+
         $('#saveChangesBtn').on('click', function() {
             $('#editForm').submit();
         });
     });
 </script>
+
 @endsection

@@ -67,7 +67,6 @@
         border-radius: 10px;
         border: none;
         padding: 4px 18px;
-        border-radius: 10px;
         letter-spacing: 1px;
         color: white;
         transition: .3s;
@@ -81,7 +80,6 @@
         border-radius: 10px;
         border: none;
         padding: 4px 18px;
-        border-radius: 10px;
         letter-spacing: 1px;
         color: white;
         transition: .3s;
@@ -187,9 +185,9 @@
                         <div class="modal-body">
                             <form id="editForm" method="post">
                                 @csrf
-                                @method('PUT')@csrf
+                                @method('PUT')
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control " placeholder="اسم المتجر" required>
+                                    <input type="text" name="name" class="form-control" placeholder="اسم المتجر" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="address" class="form-control" placeholder="عنوان المتجر" required>
@@ -201,7 +199,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-save-modal" id="saveChangesBtn">حفظ التغييرات</button>
-                            <button type="button" class="btn  btn-close-modal " data-dismiss="modal">إغلاق</button>
+                            <button type="button" class="btn btn-close-modal" data-dismiss="modal">إغلاق</button>
                         </div>
                     </div>
                 </div>
@@ -239,7 +237,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('.btn-edit').on('click', function() {
+        $('.edit-btn').on('click', function() {
             var shopId = $(this).data('shop-id');
             var shopName = $(this).closest(".card").find(".card-title").text();
             var shopAddress = $(this).closest(".card").find(".card-text:eq(0)").text().split(": ")[1];
