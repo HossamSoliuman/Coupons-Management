@@ -1,44 +1,89 @@
-@section('styles')
-    <style>
-        .nav-link-custom {
-            font-size: 16px;
-            font-weight: bold;
-            display: flex;
-            align-items: flex-start;
-        }
+<style>
+    .nav-color {
+        background-color: #fe759f !important;
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
 
-        .nav-link-custom i {
-            margin-top: 4px;
-            margin-right: 8px;
-        }
-    </style>
-@endsection
-<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark  sidebar">
-    <div class="position-sticky">
-        <ul class="nav flex-column mt-3">
-            <li class="nav-item">
-                <a class="nav-link btn btn-light btn-block mb-2 text-left nav-link-custom" style="" href="{{ route('admin.index') }}">
-                    <i class="bi bi-house-door"></i> Dashboard
-                </a>
-                <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('shops.index') }}">
-                    <i class="bi bi-shop"></i> Shops
-                </a>
-                <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('codes.index') }}">
-                    <i class="bi bi-123"></i> Codes
-                </a>
-                <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('offers.index') }}">
-                    <i class="bi bi-gift"></i> Offers
-                </a>
-                <a class="nav-link btn btn-light btn-block mb-2 nav-link-custom text-left" href="{{ route('users.index') }}">
-                    <i class="bi bi-person"></i> Users
-                </a>
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="nav-link btn btn-danger btn-block mb-2 nav-link-custom ">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                    </button>
-                </form>
-            </li>
-        </ul>
+    }
+
+    .nav-item {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+
+    .nav-item:hover {
+        background-color: #FE9EBB;
+    }
+
+    .nav-item:last-of-type:hover {
+        background-color: #ff4d4f;
+        color: black;
+
+    }
+
+    .nav-item button {
+        all: unset;
+    }
+
+    .nav-item a,
+    .nav-item button {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        padding: 10px;
+        padding-right: 30px;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .active-nav-item,
+    .active-nav-item:hover {
+        background-color: #EAFFD0;
+    }
+</style>
+<nav id="sidebar" class="col-md-3 col-lg-2 position-sticky d-md-block nav-color p-0">
+    <div class="mx-auto" style="max-width: 160px; text-align: center;">
+        <img src="{{ asset('logo-trans.png') }}" alt="Logo" class="my-4 mw-100" />
     </div>
+    <ul class="nav d-flex flex-column align-items-start p-2 flex-grow-1">
+        <li class="nav-item {{ Request::segment(1) == 'index' ? 'active-nav-item' : '' }}">
+            <a href="{{ route('admin.index') }}">
+                <i class="bi bi-house-door"></i> الرئيسية
+            </a>
+        </li>
+        <li class="nav-item {{ Request::segment(1) == 'shops' ? 'active-nav-item' : '' }}">
+            <a href="{{ route('shops.index') }}">
+                <i class="bi bi-shop"></i> المتاجر
+            </a>
+        </li>
+        <li class="nav-item {{ Request::segment(1) == 'codes' ? 'active-nav-item' : '' }}">
+            <a href="{{ route('codes.index') }}">
+                <i class="bi bi-123"></i> أكواد الخصم
+            </a>
+        </li>
+        <li class="nav-item {{ Request::segment(1) == 'offers' ? 'active-nav-item' : '' }}">
+            <a href="{{ route('offers.index') }}">
+                <i class="bi bi-gift"></i> العروض
+            </a>
+        </li>
+        <li class="nav-item {{ Request::segment(1) == 'users' ? 'active-nav-item' : '' }}">
+            <a href="{{ route('users.index') }}">
+                <i class="bi bi-person"></i> المستخدمين
+            </a>
+        </li>
+        <li class="nav-item">
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="logout-btn">
+                    <i class="bi bi-box-arrow-right"></i> تسجيل الخروج
+                </button>
+            </form>
+        </li>
+    </ul>
 </nav>

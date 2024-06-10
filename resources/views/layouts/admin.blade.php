@@ -9,8 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>سعادة</title>
-    <link rel="icon" href="logo.jpeg">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 
 
     <!-- Bootstrap CSS -->
@@ -50,7 +52,7 @@
             z-index: 9999;
         }
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid" dir="rtl">
         <div class="row">
             @include('layouts.sidebar')
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh;">
