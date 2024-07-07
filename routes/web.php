@@ -31,8 +31,6 @@ Auth::routes([
     'register' => false
 ]);
 
-use App\Http\Controllers\MarketerController;
-
 Route::view('/marketer', 'marketer');
 
 
