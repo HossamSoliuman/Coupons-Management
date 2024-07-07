@@ -30,6 +30,12 @@ use App\Models\Code;
 Auth::routes([
     'register' => false
 ]);
+// routes/web.php
+
+use App\Http\Controllers\ContactController;
+
+Route::view('/contact', 'contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::view('/marketer', 'marketer');
 
