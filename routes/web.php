@@ -31,6 +31,10 @@ Auth::routes([
     'register' => false
 ]);
 
+use App\Http\Controllers\MarketerController;
+
+Route::view('/marketer', 'marketer');
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
