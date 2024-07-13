@@ -26,7 +26,7 @@
 </style>
 
 @section('content')
-    <canvas id="myChart" width="350" height="100" ></canvas>
+    <canvas id="myChart" width="350" height="100"></canvas>
 
     <div class="table-container">
         <h2 class="main-title">تفاصيل استخدام العروض</h2>
@@ -50,7 +50,9 @@
                         <td>{{ $offerDetails->offer->shop->name }}</td>
                         <td>{{ $offerDetails->offer->name }}</td>
                         <td>{{ $offerDetails->offer->amount }}</td>
-                        <td>{{ $offerDetails->created_at->format('Y M d H:i:s') }}</td>
+                        <td>
+                            {{ $offerDetails->created_at->format('M d h:i A') }}
+                        </td>
                         <td>{{ $offerDetails->created_at->diffForHumans() }}</td>
                     </tr>
                 @endforeach
