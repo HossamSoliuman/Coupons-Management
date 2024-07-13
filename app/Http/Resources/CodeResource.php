@@ -17,6 +17,7 @@ class CodeResource extends JsonResource
         return [
             'id'=> $this->id,
 			'name' => $this->name,
+			'is_active' => $this->is_active,
 			'shop' => ShopResource::make($this->whenLoaded('shop')),
             'created_at' => $this->created_at,
             'last_update' => $this->updated_at,

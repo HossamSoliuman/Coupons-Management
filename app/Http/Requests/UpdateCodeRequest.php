@@ -34,6 +34,7 @@ class UpdateCodeRequest extends FormRequest
                 Rule::unique('codes')->ignore($codeId),
             ],
             'unit_cost' => ['numeric', 'nullable'],
+            'is_active' => ['nullable'],
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Code;
 use App\Models\OfferUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
 class GetCodeOffer extends Controller
 {
     public function __invoke(Request $request)
@@ -24,6 +25,10 @@ class GetCodeOffer extends Controller
 
         if (!$code) {
             return response()->json(['error' => 'الرمز غير موجود'], 404);
+        }
+
+        if (!$code->is_active) {
+            return response()->json(['error' => 'الرمز غير مفعل في الوقت الحالي'], 404);
         }
 
         $usedOffersByPhone = OfferUsage::with('offer.code')
