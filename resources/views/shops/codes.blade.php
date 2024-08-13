@@ -255,7 +255,7 @@
                         <th>الاسم</th>
                         <th> عدد مرات الاستخدام</th>
                         <th> السعر </th>
-                        <th>الحذف</th>
+                        {{-- <th>الحذف</th> --}}
 
                     </tr>
                 </thead>
@@ -265,7 +265,7 @@
                         <td class=" code-name">{{ $code->name }}</td>
                         <td class=" code-used-times">{{ $code->used_times }}</td>
                         <td class=" code-unit-cost">{{ $code->unit_cost }}</td>
-                        <td class="actions">
+                        {{-- <td class="actions">
                             <form action="{{ route('shops.codes.destroy', ['shop' => $shop->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -273,7 +273,7 @@
                                 <input type="hidden" name="code_id" value="{{ $code->id }}">
                                 <button type="submit" class="delete-btn">حذف</button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

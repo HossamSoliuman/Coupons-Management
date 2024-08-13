@@ -273,12 +273,12 @@
                             <button type="button" class="edit-btn" data-toggle="modal" data-target="#editModal">
                                 تعديل
                             </button>
-                            <form action="{{ route('offers.destroy', ['offer' => $offer->id]) }}" method="post">
+                            {{-- <form action="{{ route('offers.destroy', ['offer' => $offer->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="page" value="code">
                                 <button type="submit" class="delete-btn">حذف</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                     @endforeach

@@ -226,7 +226,7 @@
                         <th> العنوان</th>
                         <th> الرقم </th>
                         <th>السعر الخاص بكل علي حدة.</th>
-                        <th>الحذف</th>
+                        {{-- <th>الحذف</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -236,14 +236,14 @@
                         <td class=" code-used-times">{{ $shop->address }}</td>
                         <td class=" code-unit-cost">{{ $shop->number }}</td>
                         <td>{{ $shop->pivot->unit_cost }}</td>
-                        <td class="actions">
+                        {{-- <td class="actions">
                             <form action="{{ route('codes.shops.destroy', ['code' => $code->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                 <button type="submit" class="delete-btn">حذف</button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

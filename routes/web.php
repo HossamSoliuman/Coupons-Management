@@ -30,20 +30,11 @@ use App\Models\Code;
 Auth::routes([
     'register' => false
 ]);
-// routes/web.php
-
-use App\Http\Controllers\ContactController;
-
-Route::view('/contact', 'contact');
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
-
-Route::view('/marketer', 'marketer');
-
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/index', [IndexController::class, 'offersUsage'])->name('admin.index');
-    Route::get('index-data', [IndexController::class, 'index']);
+    Route::get('/index', [IndexController::class, 'index'])->name('admin.index');
+    Route::get('index/chart-data', [IndexController::class, 'chartData']);
     Route::get('codes/{code}/offers', [CodeController::class, 'offersUsage'])->name("codes.offers.usage");
     Route::resource('shops', ShopController::class);
     Route::resource('codes', CodeController::class);

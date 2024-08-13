@@ -41,7 +41,15 @@ class CodeController extends Controller
 
     public function update(UpdateCodeRequest $request, Code $code)
     {
-        $code->update($request->validated());
+        $validData = $request->validated();
+
+
+        if (!isset($validData['is_active']))
+            $validData['is_active'] = 0;
+        else
+            $validData['is_active'] = 1;
+        $code->update($validData);
+
         return redirect()->route('codes.index');
     }
 

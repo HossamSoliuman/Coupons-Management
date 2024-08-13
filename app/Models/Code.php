@@ -14,7 +14,8 @@ class Code extends Model
     protected $fillable = [
         'name',
         'unit_cost',
-        'total_cost'
+        'total_cost',
+        'is_active'
     ];
 
     protected $append = ['used_times'];
