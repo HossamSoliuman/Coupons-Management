@@ -35,15 +35,17 @@
                                                 <span class="input-group-text" style="border-radius: 28px 0 0 28px;">
                                                     <img src="saudi-flag2.png" alt="Saudi Flag"
                                                         style="width: 20px; height: auto;">
-                                                    +9665
+                                                    +966
                                                 </span>
                                             </div>
                                             <input id="phone" type="text" class="form-control text-center"
                                                 style="border-radius: 0 28px 28px 0;" name="phone" required
-                                                pattern="[0-9]{8}" oninput="this.reportValidity()"
-                                                title="أدخل رقم هاتف سعودي صحيح" placeholder="رقم الهاتف (8 أرقام)">
+                                                pattern="5[0-9]{8}" oninput="this.reportValidity()"
+                                                title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
+                                                placeholder="رقم الهاتف (9 أرقام)">
                                         </div>
                                     </div>
+
                                     <div class="mb-3 text-center" style="margin-top: 54px;">
                                         <button type="submit" class="btn font-size-large send-button"
                                             style="border-radius: 25px; background-color: #EAFFD0;">
