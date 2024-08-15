@@ -429,12 +429,12 @@
                     let currentValue = input.value;
 
                     if (inputId === 'phone') {
-                        // Only allow 9 digits
                         if (currentValue.length < 9) {
                             input.value += value;
                         }
                         validatePhoneNumber();
                     }
+                    input.value += value;
                 }
 
                 function deleteFromInput(inputId) {
@@ -459,9 +459,6 @@
                     }
                 }
             </script>
-
-
-
         </div>
     </div>
 
