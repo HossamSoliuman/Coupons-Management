@@ -368,7 +368,7 @@
                                     <div class="mb-3">
                                         <label for="code" class="form-label">أدخل كود العرض</label>
                                         <input id="code" type="text" class="form-control text-center"
-                                            style="border-radius: 28px;" name="code" disabled />
+                                            style="border-radius: 28px;" name="code"  inputmode='none' required/>
                                         <div id="codeKeyboard" class="mt-3">
                                             @foreach (range('A', 'Z') as $letter)
                                                 <button type="button" class="btn btn-sm send-button"
@@ -465,7 +465,7 @@
                             <p id="otpWrongMessage" class="alert alert-danger text-center" style="display: none">
                                 الرمز الذي أدخلته غير صحيح.
                             </p>
-                            <input type="hidden" name="phone" id="otp_phone">
+                            <input type="hidden" name="phone" id="otp_phone" inputmode='none' required>
                             <label for="otp" class="form-label text-center">أدخل رمز التحقق</label>
                             <input id="otp" type="text" class="form-control text-center" name="otp"
                                 disabled placeholder="رمز التحقق (OTP)">
