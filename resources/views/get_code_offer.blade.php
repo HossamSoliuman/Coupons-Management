@@ -368,7 +368,7 @@
                                     <div class="mb-3">
                                         <label for="code" class="form-label">أدخل كود العرض</label>
                                         <input id="code" type="text" class="form-control text-center"
-                                            style="border-radius: 28px;" name="code"  inputmode='none' required/>
+                                            style="border-radius: 28px;" name="code" disabled />
                                         <div id="codeKeyboard" class="mt-3">
                                             @foreach (range('A', 'Z') as $letter)
                                                 <button type="button" class="btn btn-sm send-button"
@@ -393,8 +393,8 @@
                                                 </span>
                                             </div>
                                             <input id="phone" type="text" class="form-control text-center"
-                                                style="border-radius: 0 28px 28px 0;" name="phone" inputmode='none' required
-                                                pattern="5[0-9]{8}" onchange="this.reportValidity()"
+                                                style="border-radius: 0 28px 28px 0;" name="phone" inputmode='none'
+                                                required pattern="5[0-9]{8}" onchange="this.reportValidity()"
                                                 title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                                 placeholder="رقم الهاتف (9 أرقام)">
                                         </div>
@@ -465,7 +465,7 @@
                             <p id="otpWrongMessage" class="alert alert-danger text-center" style="display: none">
                                 الرمز الذي أدخلته غير صحيح.
                             </p>
-                            <input type="hidden" name="phone" id="otp_phone" inputmode='none' required>
+                            <input type="hidden" name="phone" id="otp_phone" disabled required>
                             <label for="otp" class="form-label text-center">أدخل رمز التحقق</label>
                             <input id="otp" type="text" class="form-control text-center" name="otp"
                                 disabled placeholder="رمز التحقق (OTP)">
