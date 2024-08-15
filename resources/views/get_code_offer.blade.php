@@ -393,7 +393,8 @@
                                                 </span>
                                             </div>
                                             <input id="phone" type="text" class="form-control text-center"
-                                                style="border-radius: 0 28px 28px 0;" name="phone" disabled>
+                                                style="border-radius: 0 28px 28px 0;" name="phone" disabled
+                                                placeholder="رقم الهاتف (9 أرقام)">
                                         </div>
                                         <div id="phoneKeyboard" class="mt-3">
                                             @foreach (range(0, 9) as $number)
@@ -405,8 +406,11 @@
                                                 style="border-radius: 25px; background-color: #EAFFD0;"
                                                 onclick="deleteFromInput('phone')">Del</button>
                                         </div>
+                                        <div id="phoneError" class="text-danger mt-2" style="display: none;">أدخل رقم هاتف
+                                            سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5</div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="mb-3 text-center" style="margin-top: 54px;">
                                 <button type="submit" class="btn btn-lg send-button"
@@ -421,13 +425,38 @@
 
             <script>
                 function addToInput(inputId, value) {
-                    const input = document.getElementById(inputId);
-                    input.value += value;
+                    let input = document.getElementById(inputId);
+                    let currentValue = input.value;
+
+                    if (inputId === 'phone') {
+                        // Only allow 9 digits
+                        if (currentValue.length < 9) {
+                            input.value += value;
+                        }
+                        validatePhoneNumber();
+                    }
                 }
 
                 function deleteFromInput(inputId) {
-                    const input = document.getElementById(inputId);
+                    let input = document.getElementById(inputId);
                     input.value = input.value.slice(0, -1);
+
+                    if (inputId === 'phone') {
+                        validatePhoneNumber();
+                    }
+                }
+
+                function validatePhoneNumber() {
+                    let phoneInput = document.getElementById('phone').value;
+                    let phoneError = document.getElementById('phoneError');
+
+                    let phonePattern = /^5[0-9]{8}$/;
+
+                    if (phonePattern.test(phoneInput)) {
+                        phoneError.style.display = 'none';
+                    } else {
+                        phoneError.style.display = 'block';
+                    }
                 }
             </script>
 
