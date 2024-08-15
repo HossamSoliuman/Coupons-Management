@@ -393,7 +393,9 @@
                                                 </span>
                                             </div>
                                             <input id="phone" type="text" class="form-control text-center"
-                                                style="border-radius: 0 28px 28px 0;" name="phone" disabled
+                                                style="border-radius: 0 28px 28px 0;" name="phone" inputmode='none' required
+                                                pattern="5[0-9]{8}" onchange="this.reportValidity()"
+                                                title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                                 placeholder="رقم الهاتف (9 أرقام)">
                                         </div>
                                         <div id="phoneKeyboard" class="mt-3">
@@ -406,9 +408,9 @@
                                                 style="border-radius: 25px; background-color: #EAFFD0;"
                                                 onclick="deleteFromInput('phone')">Del</button>
                                         </div>
-                                       
-                                </div>
 
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-3 text-center" style="margin-top: 54px;">
                                 <button type="submit" class="btn btn-lg send-button"
