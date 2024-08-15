@@ -363,7 +363,7 @@
                         <form id="offerForm">
                             @csrf
                             <h4 class="mb-5">إحصل على العرض الخاص بك</h4>
-                            <div class="row justify-content-between">
+                            <div class="row justify-content-around">
                                 <div class="col-md-5">
                                     <div class="mb-3">
                                         <label for="code" class="form-label">أدخل كود العرض</label>
@@ -406,9 +406,7 @@
                                                 style="border-radius: 25px; background-color: #EAFFD0;"
                                                 onclick="deleteFromInput('phone')">Del</button>
                                         </div>
-                                        <div id="phoneError" class="text-danger mt-2" style="display: none;">أدخل رقم هاتف
-                                            سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5</div>
-                                    </div>
+                                       
                                 </div>
 
                             </div>
@@ -427,36 +425,12 @@
                 function addToInput(inputId, value) {
                     let input = document.getElementById(inputId);
                     let currentValue = input.value;
-
-                    if (inputId === 'phone') {
-                        if (currentValue.length < 9) {
-                            input.value += value;
-                        }
-                        validatePhoneNumber();
-                    }
                     input.value += value;
                 }
 
                 function deleteFromInput(inputId) {
                     let input = document.getElementById(inputId);
                     input.value = input.value.slice(0, -1);
-
-                    if (inputId === 'phone') {
-                        validatePhoneNumber();
-                    }
-                }
-
-                function validatePhoneNumber() {
-                    let phoneInput = document.getElementById('phone').value;
-                    let phoneError = document.getElementById('phoneError');
-
-                    let phonePattern = /^5[0-9]{8}$/;
-
-                    if (phonePattern.test(phoneInput)) {
-                        phoneError.style.display = 'none';
-                    } else {
-                        phoneError.style.display = 'block';
-                    }
                 }
             </script>
         </div>
