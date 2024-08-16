@@ -363,6 +363,11 @@
                         <form id="offerForm">
                             @csrf
                             <h4 class="mb-5">إحصل على العرض الخاص بك</h4>
+                            <p id="phoneValidationMessage" class="alert alert-danger text-center"
+                                style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; width: 80%; max-width: 500px;">
+                                أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5
+                            </p>
+
                             <div class="row justify-content-around">
                                 <div class="col-md-5">
                                     <div class="mb-3">
@@ -392,10 +397,14 @@
                                                     +966
                                                 </span>
                                             </div>
-                                            <input id="phone" type="text" class="form-control text-center"
+                                            {{-- <input id="phone" type="text" class="form-control text-center"
+                                                style="border-radius: 0 28px 28px 0;" name="phone"
+                                                placeholder="رقم الهاتف (9 أرقام)"> --}}
+                                            <input id="phone" type="text" class="form-control text-center" disabled
                                                 style="border-radius: 0 28px 28px 0;" name="phone" inputmode='none'
                                                 required pattern="5[0-9]{8}" onchange="this.reportValidity()"
-                                                title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
+                                                title=
+                                                "أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                                 placeholder="رقم الهاتف (9 أرقام)">
                                         </div>
                                         <div id="phoneKeyboard" class="mt-3">
@@ -413,11 +422,16 @@
                                 </div>
                             </div>
                             <div class="mb-3 text-center" style="margin-top: 54px;">
-                                <button type="submit" class="btn btn-lg send-button"
+                                <button type="submit" id="submitButton" class="btn btn-lg send-button"
                                     style="border-radius: 25px; background-color: #EAFFD0;">
                                     <i class="bi bi-arrow-left"></i> إرسال
                                 </button>
+                                <div id="loadingSpinner" style="display: none;">
+                                    <img src="spinner.gif" alt="Loading..." style="width:100px" />
+                                </div>
                             </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -546,11 +560,44 @@
             });
         }
 
+        function validatePhoneInput() {
+            let input = document.getElementById('phone');
+            input.disabled = false;
+            if (!input.checkValidity()) {
+                input.disabled = true;
+                return false;
+            } else {
+                input.disabled = true;
+                return true;
+            }
+            input.disabled = true;
+        }
+
+        function startLoading() {
+            $('#loadingSpinner').show();
+            $('#submitButton').hide();
+        }
+
+        function endLoading() {
+            $('#loadingSpinner').hide();
+            $('#submitButton').show();
+        }
         $(document).ready(function() {
             $('#offerForm').submit(function(event) {
                 event.preventDefault();
                 var phone = $('#phone').val();
                 var code = $('#code').val();
+
+                startLoading();
+
+                if (!validatePhoneInput()) {
+                    $('#phoneValidationMessage').show();
+                    setTimeout(function() {
+                        $('#phoneValidationMessage').hide();
+                    }, 4000);
+                    endLoading();
+                    return;
+                }
                 $('#otp_phone').val(phone);
                 $.ajax({
                     type: 'GET',
@@ -560,6 +607,7 @@
                         code: code
                     },
                     success: function(response) {
+                        endLoading();
                         if (response.verified) {
                             get_offer(phone, code);
                         } else {
@@ -569,6 +617,7 @@
                         }
                     },
                     error: function(xhr) {
+                        endLoading();
                         get_offer(phone, code);
                     }
                 });
@@ -578,7 +627,6 @@
                 event.preventDefault();
                 var phone = $('#otp_phone').val();
                 var otp = $('#otp').val();
-
                 $.ajax({
                     type: 'GET',
                     url: '/api/verify-otp',
