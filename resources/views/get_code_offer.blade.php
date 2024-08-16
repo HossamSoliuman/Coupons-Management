@@ -363,8 +363,9 @@
                         <form id="offerForm">
                             @csrf
                             <h4 class="mb-5">إحصل على العرض الخاص بك</h4>
-                            <p id="phoneValidationMessage" class="alert alert-danger text-center"
+                            <p id="offerValidationMessage" class="alert alert-danger text-center"
                                 style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; width: 80%; max-width: 500px;">
+                                أدخل كود و
                                 أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5
                             </p>
 
@@ -373,7 +374,7 @@
                                     <div class="mb-3">
                                         <label for="code" class="form-label">أدخل كود العرض</label>
                                         <input id="code" type="text" class="form-control text-center"
-                                            style="border-radius: 28px;" name="code" disabled />
+                                            style="border-radius: 28px;" name="code" disabled required />
                                         <div id="codeKeyboard" class="mt-3">
                                             @foreach (range('A', 'Z') as $letter)
                                                 <button type="button" class="btn btn-sm send-button"
@@ -560,17 +561,23 @@
             });
         }
 
-        function validatePhoneInput() {
-            let input = document.getElementById('phone');
-            input.disabled = false;
-            if (!input.checkValidity()) {
-                input.disabled = true;
-                return false;
-            } else {
-                input.disabled = true;
+        function validateOfferInputs() {
+            // return 1;
+            let phoneInput = document.getElementById('phone');
+            let CodeInput = document.getElementById('code');
+            phoneInput.disabled = false;
+            CodeInput.disabled = false;
+            if (CodeInput.checkValidity() && phoneInput.checkValidity()) {
+                CodeInput.disabled = true;
+                phoneInput.disabled = true;
                 return true;
+            } else {
+                CodeInput.disabled = true;
+                phoneInput.disabled = true;
+                return false;
             }
-            input.disabled = true;
+            CodeInput.disabled = true;
+            phoneInput.disabled = true;
         }
 
         function startLoading() {
@@ -590,10 +597,10 @@
 
                 startLoading();
 
-                if (!validatePhoneInput()) {
-                    $('#phoneValidationMessage').show();
+                if (!validateOfferInputs()) {
+                    $('#offerValidationMessage').show();
                     setTimeout(function() {
-                        $('#phoneValidationMessage').hide();
+                        $('#offerValidationMessage').hide();
                     }, 4000);
                     endLoading();
                     return;
@@ -618,7 +625,21 @@
                     },
                     error: function(xhr) {
                         endLoading();
-                        get_offer(phone, code);
+                        console.log(xhr);
+
+                        // $('#modalMessage').text("لم يتم ارسال رساله التأكيد");
+                        // $('#responseModal').show();
+                        $('#code').val("");
+                        $('#phone').val("");
+                        $('#offerResponse').show();
+                        $('#modalMessage').html(
+                            '<div class="alert" role="alert">' +
+                            '<p class="h3">' + "لم يتم ارسال رسالة التأكيد " + '</p>' +
+                            '</div>'
+                        );
+                        $('#responseModal').modal('show');
+                        $('#failedModalGif').removeClass('gifHidden');
+
                     }
                 });
             });
