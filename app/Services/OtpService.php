@@ -17,11 +17,11 @@ class OtpService
     public function sendOtp($phoneNumber, $code)
     {
         $otp = rand(100000, 999999);
-        $message = "Your verification code is: $otp";
-        $this->twilio->messages->create($phoneNumber, [
-            'from' => env('TWILIO_PHONE_NUMBER'),
-            'body' => $message
-        ]);
+        // $message = "Your verification code is: $otp";
+        // $this->twilio->messages->create($phoneNumber, [
+        //     'from' => env('TWILIO_PHONE_NUMBER'),
+        //     'body' => $message
+        // ]);
 
         $verifiedPhone = VerifiedPhone::where('phone', $phoneNumber)->first();
 
