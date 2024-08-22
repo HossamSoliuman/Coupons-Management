@@ -11,7 +11,7 @@ class OtpService
 
     public function __construct()
     {
-        $this->twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
+        // $this->twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
     }
 
     public function sendOtp($phoneNumber, $code)
