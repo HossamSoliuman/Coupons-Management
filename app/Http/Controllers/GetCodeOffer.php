@@ -29,7 +29,7 @@ class GetCodeOffer extends Controller
                 'verified' => 1
             ]);
         } else {
-            // $this->otpService->sendOtp($inputPhone, $inputCode);
+            $this->otpService->sendOtp($inputPhone, $inputCode);
             return response()->json([
                 'verified' => 0
             ]);
