@@ -461,8 +461,8 @@
                                     <span class="input-group-text phone-icon"><i
                                             class="fa-solid fa-phone-volume"></i></span>
                                     <input id="phone" type="text" class="form-control" name="phone"
-                                        inputmode='none' required pattern="5[0-9]{8}" onchange="this.reportValidity()"
-                                        title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
+                                        {{-- inputmode='none' required pattern="5[0-9]{8}" onchange="this.reportValidity()"
+                                        title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5" --}}
                                         placeholder="رقم الهاتف (9 أرقام)">
                                 </div>
                                 <div id="codeKeyboard" class="keyboard-parent">

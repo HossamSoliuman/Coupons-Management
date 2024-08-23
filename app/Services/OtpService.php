@@ -65,7 +65,7 @@ class OtpService
 
     private function sendWithAuthentica($phone)
     {
-        $phone = '+966' . $phone;
+        // $phone = '+966' . $phone;
 
         $response = Http::withHeaders([
             'X-Authorization' => env('AUTHENTICA_API_KEY'),
@@ -84,7 +84,7 @@ class OtpService
 
     private function verifyWithAuthentica($phone, $otp)
     {
-        $phone = '+966' . $phone;
+        // $phone = '+966' . $phone;
 
         $response = Http::withHeaders([
             'X-Authorization' => env('AUTHENTICA_API_KEY'),
