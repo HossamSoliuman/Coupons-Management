@@ -10,9 +10,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Traits\ApiResponse;
 
 class GetCodeOffer extends Controller
 {
+    use ApiResponse;
     protected $otpService;
 
     public function __construct(OtpService $otpService)
@@ -43,8 +45,6 @@ class GetCodeOffer extends Controller
         $phone = $request->phone;
         $otp = $request->otp;
         return $result = $this->otpService->verify($phone, $otp);
-
-        
     }
 
     public function getOffer(Request $request)
@@ -61,11 +61,11 @@ class GetCodeOffer extends Controller
 
 
         if (!$code) {
-            return response()->json(['error' => 'الرمز غير موجود'], 404);
+            return $this->apiResponse(null, 'الرمز غير موجود', 0);
         }
 
         if (!$code->is_active) {
-            return response()->json(['error' => 'الرمز غير مفعل في الوقت الحالي'], 404);
+            return $this->apiResponse(null, 'الرمز غير مفعل في الوقت الحالي', 0);
         }
 
         $usedOffersByPhone = OfferUsage::with('offer.code')
@@ -77,7 +77,7 @@ class GetCodeOffer extends Controller
             ->get();
 
         if (!$usedOffersByPhone->isEmpty()) {
-            return response()->json(['error' => 'لقد تم استخدام هذا الكود خلال اقل من يوم'], 404);
+            return $this->apiResponse(null, 'لقد تم استخدام هذا الكود خلال اقل من يوم', 0);
         }
 
 
@@ -87,13 +87,13 @@ class GetCodeOffer extends Controller
             ->get();
 
         if ($offers->isEmpty()) {
-            return response()->json(['error' => 'لا تتوفر عروض لهذا الرمز'], 404);
+            return $this->apiResponse(null, 'لا تتوفر عروض لهذا الرمز', 0);
         }
 
         $selectedOffer = $this->selectOfferRandomly($offers);
 
         if (!$selectedOffer) {
-            return response()->json(['error' => 'فشل في اختيار العرض'], 500);
+            return $this->apiResponse(null, 'فشل في اختيار العرض', 0);
         }
 
         OfferUsage::create([
@@ -102,8 +102,7 @@ class GetCodeOffer extends Controller
         ]);
 
         $selectedOffer->increment('used_times');
-
-        return response()->json(['success' => $selectedOffer]);
+        return $this->apiResponse($selectedOffer);
     }
 
     private function selectOfferRandomly($offers)
