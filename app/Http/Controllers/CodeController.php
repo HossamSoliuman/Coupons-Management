@@ -11,6 +11,7 @@ use App\Models\Offer;
 use App\Models\OfferUsage;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CodeController extends Controller
 {
@@ -25,7 +26,9 @@ class CodeController extends Controller
 
     public function store(StoreCodeRequest $request)
     {
-        $code = Code::create($request->validated());
+        $validData = $request->validated();
+        $validData['name'] = Str::upper($validData['name']);
+        $code = Code::create($validData);
         if ($request->is_shop_page) {
             return redirect()->route('shops.show', ['shop' => $request->shop_id]);
         };

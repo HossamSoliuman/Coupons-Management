@@ -9,6 +9,7 @@ use App\Models\VerifiedPhone;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class GetCodeOffer extends Controller
 {
@@ -55,7 +56,7 @@ class GetCodeOffer extends Controller
 
     public function getOffer(Request $request)
     {
-        $inputCode = $request->code;
+        $inputCode = Str::upper($request->code);
         $inputPhone = $request->phone;
 
         $code = Code::with(['offers', 'shops'])
