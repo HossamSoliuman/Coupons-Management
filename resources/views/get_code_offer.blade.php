@@ -657,13 +657,13 @@
             const name = $('<p>', {
                 class: 'h4 text-bold',
                 style: 'margin-bottom: 0',
-                text: response.success.name
+                text: response.data.name
             });
             alertDiv.append(name);
 
             const amount = $('<p>', {
                 class: 'h1 text-bold mt-4',
-                text: response.success.amount
+                text: response.data.amount
             });
             alertDiv.append(amount);
 
@@ -682,37 +682,42 @@
                     code
                 },
                 success: function(response) {
-                    $('#code').val("");
-                    $('#phone').val("");
-                    $('#offerResponse').show().addClass("message-card-delay-succes");
-                    $('#responseModalLabel').text('نجاح');
+                    console.log(response);
+                    if (response.success) {
+                        $('#code').val("");
+                        $('#phone').val("");
+                        $('#offerResponse').show().addClass("message-card-delay-succes");
+                        $('#responseModalLabel').text('نجاح');
 
-                    buildSuccessModal(response);
+                        buildSuccessModal(response);
 
-                    $('#failedModalGif').attr('src', 'gift-discount.gif').addClass('gifHidden');
-                    $('#responseModal').modal('show');
+                        $('#failedModalGif').attr('src', 'gift-discount.gif').addClass('gifHidden');
+                        $('#responseModal').modal('show');
 
-                    $('#celebrate').addClass('confettiShow');
-                    setTimeout(() => $('#celebrate').removeClass('confettiShow'), 6000);
+                        $('#celebrate').addClass('confettiShow');
+                        setTimeout(() => $('#celebrate').removeClass('confettiShow'), 6000);
+                    } else {
+                        $('#code').val("");
+                        $('#phone').val("");
+                        $('#offerResponse').show();
+
+                        $('#modalMessage').html(
+                            $('<div>', {
+                                class: 'alert',
+                                role: 'alert'
+                            })
+                            .append($('<p>', {
+                                class: 'h3',
+                                text: response.message
+                            }))
+                        );
+
+                        $('#responseModal').modal('show');
+                        $('#failedModalGif').removeClass('gifHidden');
+                    }
                 },
                 error: function(xhr) {
-                    $('#code').val("");
-                    $('#phone').val("");
-                    $('#offerResponse').show();
 
-                    $('#modalMessage').html(
-                        $('<div>', {
-                            class: 'alert',
-                            role: 'alert'
-                        })
-                        .append($('<p>', {
-                            class: 'h3',
-                            text: xhr.responseJSON.error
-                        }))
-                    );
-
-                    $('#responseModal').modal('show');
-                    $('#failedModalGif').removeClass('gifHidden');
                 }
             });
         }
