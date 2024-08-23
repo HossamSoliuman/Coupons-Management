@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('verified_phones', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('otp');
-            $table->string('code');
+            $table->string('phone')->nullable();
+            $table->string('otp')->nullable();
+            $table->string('code')->nullable();
             $table->boolean('is_verified')->default(false);
             $table->integer('sent_count')->default(0);
             $table->timestamps();

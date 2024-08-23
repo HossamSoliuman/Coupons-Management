@@ -3,49 +3,58 @@
 namespace App\Services;
 
 use App\Models\VerifiedPhone;
-use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Http;
 
 class OtpService
 {
     public function sendOtp($phoneNumber, $code)
     {
-        $otp = rand(100000, 999999);
 
-        $this->sendWithTwilio($otp, $phoneNumber);
+        $response = $this->sendWithAuthentica($phoneNumber);
 
-        $verifiedPhone = VerifiedPhone::where('phone', $phoneNumber)->first();
+        if ($response['success'] == true) {
+            $verifiedPhone = VerifiedPhone::where('phone', $phoneNumber)->first();
 
-        if ($verifiedPhone) {
-            $verifiedPhone->increment('sent_count');
-            $verifiedPhone->update([
-                'otp' => $otp,
-                'code' => $code,
-                'is_verified' => false,
-            ]);
+            if ($verifiedPhone) {
+                $verifiedPhone->increment('sent_count');
+                $verifiedPhone->update([
+                    'code' => $code,
+                    'is_verified' => false,
+                ]);
+            } else {
+                VerifiedPhone::create([
+                    'phone' => $phoneNumber,
+                    'code' => $code,
+                    'sent_count' => 1,
+                    'is_verified' => false,
+                ]);
+            }
         } else {
-            VerifiedPhone::create([
-                'phone' => $phoneNumber,
-                'otp' => $otp,
-                'code' => $code,
-                'sent_count' => 1,
-                'is_verified' => false,
-            ]);
         }
+        return $response;
     }
 
     public function verify($phone, $otp)
     {
-        $verifiedPhone = VerifiedPhone::where('phone', $phone)->first();
-        if ($verifiedPhone && $verifiedPhone->otp == $otp) {
-            $verifiedPhone->update(['is_verified' => true]);
-            return [
-                'success' => 1,
-                'phone' => $phone,
-                'code' => $verifiedPhone->code
-            ];
-        } else {
-            return ['success' => 0];
+        $response = $this->verifyWithAuthentica($phone, $otp);
+
+        if ($response['status'] == true) {
+            $verifiedPhone = VerifiedPhone::where('phone', $phone)->first();
+            if ($verifiedPhone) {
+                $verifiedPhone->update(['is_verified' => true]);
+                return [
+                    'success' => 1,
+                    'phone' => $phone,
+                    'code' => $verifiedPhone->code,
+                    'message' => $response
+                ];
+            }
         }
+
+        return [
+            'success' => 0,
+            'message' => $response
+        ];
     }
 
     public function checkIsVerified($phone)
@@ -54,14 +63,38 @@ class OtpService
         return $verifiedPhone ? $verifiedPhone->is_verified : false;
     }
 
-    public function sendWithTwilio($otp, $phone)
+    private function sendWithAuthentica($phone)
     {
-        $message = "Your verification code is: $otp";
+        $phone = '+966' . $phone;
 
-        $twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
-        $twilio->messages->create($phone, [
-            'from' => env('TWILIO_PHONE_NUMBER'),
-            'body' => $message
+        $response = Http::withHeaders([
+            'X-Authorization' => env('AUTHENTICA_API_KEY'),
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])->post('https://api.authentica.sa/api/sdk/v1/sendOTP', [
+            'phone' => $phone,
+            'method' => 'sms',
+            'otp_format' => 'numeric',
+            'template_id' => 32,
+            'number_of_digits' => 6,
         ]);
+
+        return $response->json();
+    }
+
+    private function verifyWithAuthentica($phone, $otp)
+    {
+        $phone = '+966' . $phone;
+
+        $response = Http::withHeaders([
+            'X-Authorization' => env('AUTHENTICA_API_KEY'),
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])->post('https://api.authentica.sa/api/sdk/v1/verifyOTP', [
+            'phone' => $phone,
+            'otp' => $otp,
+        ]);
+
+        return $response->json();
     }
 }
