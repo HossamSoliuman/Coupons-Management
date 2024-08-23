@@ -454,14 +454,14 @@
                         <div class="mb-3 d-flex flex-column" style="gap: 10px;">
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
-                                <input id="code" type="text" class="form-control" name="code" inputmode='none' readonly
-                                    required placeholder="أدخل كود العرض" />
+                                <input id="code" type="text" class="form-control" name="code" inputmode='none' required
+                                    placeholder="أدخل كود العرض" />
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text phone-icon"><i
                                         class="fa-solid fa-phone-volume"></i></span>
                                 <input id="phone" type="text" class="form-control" name="phone" inputmode='none'
-                                    readonly required pattern="5[0-9]{8}" onchange="this.reportValidity()"
+                                    required pattern="5[0-9]{8}" onchange="this.reportValidity()"
                                     title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                     placeholder="رقم الهاتف (9 أرقام)">
                             </div>
@@ -509,7 +509,7 @@
                                 <div class="otp-inputs">
                                     @for ($i = 0; $i < 6; $i++)
                                         <input type="text" class="form-control otp-input" maxlength="1" inputmode='none'
-                                            readonly required>
+                                            required>
                                     @endfor
                                 </div>
                             </div>
