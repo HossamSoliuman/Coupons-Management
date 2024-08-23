@@ -7,21 +7,11 @@ use Twilio\Rest\Client;
 
 class OtpService
 {
-    protected $twilio;
-
-    public function __construct()
-    {
-        // $this->twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
-    }
-
     public function sendOtp($phoneNumber, $code)
     {
         $otp = rand(100000, 999999);
-        // $message = "Your verification code is: $otp";
-        // $this->twilio->messages->create($phoneNumber, [
-        //     'from' => env('TWILIO_PHONE_NUMBER'),
-        //     'body' => $message
-        // ]);
+
+        $this->sendWithTwilio($otp, $phoneNumber);
 
         $verifiedPhone = VerifiedPhone::where('phone', $phoneNumber)->first();
 
@@ -62,5 +52,16 @@ class OtpService
     {
         $verifiedPhone = VerifiedPhone::where('phone', $phone)->first();
         return $verifiedPhone ? $verifiedPhone->is_verified : false;
+    }
+
+    public function sendWithTwilio($otp, $phone)
+    {
+        $message = "Your verification code is: $otp";
+
+        $twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
+        $twilio->messages->create($phone, [
+            'from' => env('TWILIO_PHONE_NUMBER'),
+            'body' => $message
+        ]);
     }
 }
