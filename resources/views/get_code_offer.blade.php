@@ -708,7 +708,7 @@
         $('#offerForm').submit(function (event) {
             event.preventDefault();
             var phone = $('#phone').val().toLowerCase();
-            var code = $('#code').val().toLowerCase();
+            var code = $('#code').val().toUpperCase();
 
             startLoading();
             $.ajax({
