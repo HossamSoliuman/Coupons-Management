@@ -613,6 +613,8 @@
 
 @section('scripts')
 <script>
+    const phonePattern = /^5[0-9]{8}$/;
+
     document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
         input.addEventListener('focus', () => {
             input.setAttribute('readonly', true);
@@ -664,8 +666,6 @@
     $('#submitButton').on('click', function () {
         $('#code').attr("readonly", false);
         $('#phone').attr("readonly", false);
-
-        var phonePattern = /^5[0-9]{8}$/;
 
         if (!phonePattern.test($('#phone').val()) || !$('#code').val().length) {
             $('#offerValidationMessage').show();
@@ -771,8 +771,6 @@
 
     $(document).ready(function () {
         $('#offerForm').submit(function (event) {
-            var phonePattern = /^5[0-9]{8}$/;
-
             if (!phonePattern.test($('#phone').val()) || !$('#code').val().length) {
                 $('#offerValidationMessage').show();
             } else {
