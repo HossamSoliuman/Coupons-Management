@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->text('message');
+            $table->string('phone')->nullable();
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }
