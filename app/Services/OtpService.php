@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Log;
 use App\Models\VerifiedPhone;
 use Illuminate\Support\Facades\Http;
 
@@ -78,7 +79,11 @@ class OtpService
             'template_id' => 32,
             'number_of_digits' => 6,
         ]);
-
+        if ($response['success'] != true) {
+            Log::create([
+                'message' => $response->json()
+            ]);
+        }
         return $response->json();
     }
 
