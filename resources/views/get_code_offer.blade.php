@@ -508,8 +508,8 @@
                             <div class="input-group">
                                 <div class="otp-inputs">
                                     @for ($i = 0; $i < 6; $i++)
-                                        <input type="text" class="form-control otp-input" maxlength="1" inputmode='none'
-                                            required>
+                                        <input type="text" class="form-control otp-input" id="otp-input-{{ $i }}"
+                                            maxlength="1" required>
                                     @endfor
                                 </div>
                             </div>
@@ -613,6 +613,16 @@
 
 @section('scripts')
 <script>
+    document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+        input.addEventListener('focus', () => {
+            input.setAttribute('readonly', true);
+        });
+
+        input.addEventListener('blur', () => {
+            input.removeAttribute('readonly');
+        });
+    });
+
     $('.otp-input').on('keydown keypress keyup', function (e) {
         e.preventDefault();
     });
@@ -804,6 +814,8 @@
         });
 
         $('#otpForm').submit(function (event) {
+            $('.otp-input').blur();
+
             event.preventDefault();
             let otp = $('.otp-input').map(function () {
                 return $(this).val();
