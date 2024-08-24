@@ -663,7 +663,6 @@
     });
 
     $('#submitButton').on('click', function () {
-        console.log("adlfj")
         $('#code').attr("readonly", false);
         $('#phone').attr("readonly", false);
 
@@ -723,6 +722,7 @@
                 code
             },
             success: function (response) {
+                console.log(response);
                 if (response.success) {
                     $('#code').val("");
                     $('#phone').val("");
