@@ -632,11 +632,28 @@
     $('#phone').on('focus', function () {
         $('#phoneKeyboard').show();
         $('#codeKeyboard').hide();
+        $('#phone').attr("readonly", true);
+        $('#code').attr("readonly", false);
     });
 
     $('#code').on('focus', function () {
         $('#phoneKeyboard').hide();
         $('#codeKeyboard').show();
+        $('#code').attr("readonly", true);
+        $('#phone').attr("readonly", false);
+    });
+
+    $('#phone').on('blur', function () {
+        $('#phone').attr("readonly", false);
+    });
+
+    $('#code').on('blur', function () {
+        $('#code').attr("readonly", false);
+    });
+
+    $('#submitButton').on('click', function () {
+        $('#code').attr("readonly", false);
+        $('#phone').attr("readonly", false);
     });
 
     function buildSuccessModal(response) {
@@ -736,7 +753,14 @@
 
     $(document).ready(function () {
         $('#offerForm').submit(function (event) {
+            $('#code').attr("readonly", false);
+            $('#phone').attr("readonly", false);
+
+            $('#phone').blur();
+            $('#phone').blur();
+
             event.preventDefault();
+
             var phone = $('#phone').val().toLowerCase();
             var code = $('#code').val().toUpperCase();
 
