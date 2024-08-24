@@ -81,6 +81,7 @@ class OtpService
         ]);
         if ($response['success'] != true) {
             Log::create([
+                'phone' => $phone,
                 'message' => $response->json()
             ]);
         }

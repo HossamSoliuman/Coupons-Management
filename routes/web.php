@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Models\Code;
+use App\Models\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
             session(['locale' => $locale]);
         }
         return redirect()->back();
+    });
+
+    Route::get('logs/{n}', function ($n) {
+        return Log::orderBy('id', 'desc')->take($n)->get();
     });
 });
 
