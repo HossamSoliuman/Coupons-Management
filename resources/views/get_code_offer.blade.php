@@ -723,7 +723,6 @@
                 code
             },
             success: function (response) {
-                console.log(response);
                 if (response.success) {
                     $('#code').val("");
                     $('#phone').val("");
