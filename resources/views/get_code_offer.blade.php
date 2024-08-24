@@ -805,7 +805,6 @@
                     },
                     success: function (response) {
                         endLoading();
-                        console.log(response);
                         if (response.verified) {
                             get_offer(phone, code);
                         } else {
