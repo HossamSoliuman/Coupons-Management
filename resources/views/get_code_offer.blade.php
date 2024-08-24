@@ -461,8 +461,7 @@
                                 <span class="input-group-text phone-icon"><i
                                         class="fa-solid fa-phone-volume"></i></span>
                                 <input id="phone" type="text" class="form-control" name="phone" inputmode='none'
-                                    required pattern="5[0-9]{8}" onchange="this.reportValidity()"
-                                    title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
+                                    required title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                     placeholder="رقم الهاتف (9 أرقام)">
                             </div>
                             <div id="codeKeyboard" class="keyboard-parent">
@@ -664,11 +663,16 @@
     });
 
     $('#submitButton').on('click', function () {
+        console.log("adlfj")
         $('#code').attr("readonly", false);
         $('#phone').attr("readonly", false);
 
-        if (!phonePattern.test($('#phone').val()) || !$('#code').val().length) {
+        if ($('#phone').val().length && (!phonePattern.test($('#phone').val()) || !$('#code').val().length)) {
             $('#offerValidationMessage').show();
+
+            setTimeout(() => {
+                $('#offerValidationMessage').hide();
+            }, 3000);
         } else {
             $('#offerValidationMessage').hide();
         }
@@ -771,12 +775,6 @@
 
     $(document).ready(function () {
         $('#offerForm').submit(function (event) {
-            if (!phonePattern.test($('#phone').val()) || !$('#code').val().length) {
-                $('#offerValidationMessage').show();
-            } else {
-                $('#offerValidationMessage').hide();
-            }
-
             $('#code').attr("readonly", false);
             $('#phone').attr("readonly", false);
 
@@ -785,46 +783,57 @@
 
             event.preventDefault();
 
-            var phone = $('#phone').val().toLowerCase();
-            var code = $('#code').val().toUpperCase();
+            if ($('#phone').val().length && (!phonePattern.test($('#phone').val()) || !$('#code').val().length)) {
+                $('#offerValidationMessage').show();
 
-            startLoading();
-            $.ajax({
-                type: 'GET',
-                url: '/api/verify-phone',
-                data: {
-                    phone,
-                    code
-                },
-                success: function (response) {
-                    endLoading();
-                    console.log(response);
-                    if (response.verified) {
-                        get_offer(phone, code);
-                    } else {
-                        $('#offerForm').hide();
-                        $('#otpForm').show();
+                setTimeout(() => {
+                    $('#offerValidationMessage').hide();
+                }, 3000);
+            } else {
+                $('#offerValidationMessage').hide();
+
+                var phone = $('#phone').val().toLowerCase();
+                var code = $('#code').val().toUpperCase();
+
+                startLoading();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/verify-phone',
+                    data: {
+                        phone,
+                        code
+                    },
+                    success: function (response) {
+                        endLoading();
+                        console.log(response);
+                        if (response.verified) {
+                            get_offer(phone, code);
+                        } else {
+                            $('#offerForm').hide();
+                            $('#otpForm').show();
+                        }
+                    },
+                    error: function (xhr) {
+                        endLoading();
+                        $('#offerResponse').show();
+
+                        $('#modalMessage').html(
+                            $('<div>', {
+                                class: 'alert',
+                                role: 'alert'
+                            })
+                                .append($('<p>', {
+                                    class: 'h3',
+                                    text: "لم يتم ارسال رسالة التأكيد"
+                                }))
+                        );
+
+                        $('#responseModal').modal('show');
+                        $('#failedModalGif').removeClass('gifHidden');
                     }
-                },
-                error: function (xhr) {
-                    endLoading();
-                    $('#offerResponse').show();
-
-                    $('#modalMessage').html(
-                        $('<div>', {
-                            class: 'alert',
-                            role: 'alert'
-                        })
-                            .append($('<p>', {
-                                class: 'h3',
-                                text: "لم يتم ارسال رسالة التأكيد "
-                            }))
-                    );
-
-                    $('#responseModal').modal('show');
-                    $('#failedModalGif').removeClass('gifHidden');
-                }
-            });
+                });
+            }
         });
 
         $('#otpForm').submit(function (event) {
