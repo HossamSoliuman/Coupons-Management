@@ -82,7 +82,7 @@ class OtpService
         if ($response['errors']) {
             Log::create([
                 'phone' => $phone,
-                'message' => $response->json()
+                'message' => $response
             ]);
         }
         return $response->json();
