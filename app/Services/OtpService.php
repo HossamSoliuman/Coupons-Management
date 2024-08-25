@@ -79,7 +79,7 @@ class OtpService
             'template_id' => 32,
             'number_of_digits' => 6,
         ]);
-        if ($response['success'] != true) {
+        if ($response['errors']) {
             Log::create([
                 'phone' => $phone,
                 'message' => $response->json()
