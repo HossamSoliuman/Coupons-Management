@@ -438,7 +438,7 @@
             @endfor
         </div>
         <div class="text-center">
-            <img src="logo-trans.png" alt="Logo" style="max-width: 250px;" />
+            <img src="logo-in-shops-page.png" alt="Logo" style="max-width: 250px;" />
         </div>
         <div class="col-12 mt-5 d-flex justify-content-center">
             <div class="card" style="box-shadow: none; width: 100%; max-width: 900px;">
