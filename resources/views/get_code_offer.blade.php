@@ -10,7 +10,7 @@
 
     .form-control {
         text-align: right;
-        background-color: #dee6d2;
+        background-color: #e2e2e1;
         height: 50px;
         padding-right: 56px;
     }
@@ -20,9 +20,9 @@
     }
 
     .form-control:focus {
-        border-color: #EAFFD0 !important;
-        box-shadow: 0 0 0 .2rem #EAFFD0 !important;
-        background-color: #dee6d2;
+        border-color: darkgray !important;
+        box-shadow: 0px 0px 10px 10px darkgray !important;
+        background-color: #e2e2e1;
     }
 
     .form-label {
@@ -82,7 +82,13 @@
         grid-template-columns: repeat(5, auto);
 
         @media (min-width: 640px) {
-            grid-template-columns: repeat(10, auto);
+            grid-template-columns: repeat(6, auto);
+        }
+    }
+
+    .keyboard-parent-number {
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(5, auto);
         }
     }
 
@@ -97,6 +103,10 @@
         background-color: black;
         color: white;
         grid-column: span 3;
+    }
+
+    .submit-button-number {
+        grid-column: span 4;
     }
 
     .submit-button:hover {
@@ -438,10 +448,10 @@
             @endfor
         </div>
         <div class="text-center">
-            <img src="logo-in-shops-page.png" alt="Logo" style="max-width: 250px;" />
+            <img src="logo-in-shops-page.png" alt="Logo" style="max-width: 200px;" />
         </div>
-        <div class="col-12 mt-5 d-flex justify-content-center">
-            <div class="card" style="box-shadow: none; width: 100%; max-width: 900px;">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
                 <div class="card-body text-center" style="width: 100%;">
                     <form id="offerForm">
                         @csrf
@@ -476,15 +486,18 @@
                                     تأكيد
                                 </button>
                             </div>
-                            <div id="phoneKeyboard" class="keyboard-parent" style="display: none;" aria-hidden="true">
-                                @foreach (range(0, 9) as $number)
+                            <div id="phoneKeyboard" class="keyboard-parent keyboard-parent-number"
+                                style="display: none;" aria-hidden="true">
+                                @foreach (range(1, 9) as $number)
                                     <button type="button" class="btn btn-sm send-button keyboard-button"
                                         onclick="addToInput('phone', '{{ $number }}')">{{ $number }}</button>
                                 @endforeach
+                                <button type="button" class="btn btn-sm send-button keyboard-button"
+                                    onclick="addToInput('phone', '{{ 0 }}')">{{ 0 }}</button>
                                 <button type="button" class="btn btn-sm keyboard-button"
                                     onclick="deleteFromInput('phone')"><i class="bi bi-backspace"></i></button>
                                 <button type="submit" id="submitButton"
-                                    class="btn btn-sm submit-button keyboard-button ">
+                                    class="btn btn-sm submit-button submit-button-number keyboard-button ">
                                     تأكيد
                                 </button>
                             </div>
@@ -512,15 +525,17 @@
                                     @endfor
                                 </div>
                             </div>
-                            <div id="otpKeyboard" class="keyboard-parent">
-                                @foreach (range(0, 9) as $number)
+                            <div id="otpKeyboard" class="keyboard-parent keyboard-parent-number">
+                                @foreach (range(1, 9) as $number)
                                     <button type="button" class="btn btn-sm send-button keyboard-button"
                                         onclick="addToOtpInputs('{{ $number }}')">{{ $number }}</button>
                                 @endforeach
+                                <button type="button" class="btn btn-sm send-button keyboard-button"
+                                    onclick="addToOtpInputs('{{ 0 }}')">{{ 0 }}</button>
                                 <button type="button" class="btn btn-sm keyboard-button"
                                     onclick="deleteFromOtpInput()"><i class="bi bi-backspace"></i></button>
                                 <button type="submit" id="submitButton"
-                                    class="btn btn-sm submit-button keyboard-button">
+                                    class="btn btn-sm submit-button submit-button-number keyboard-button">
                                     تأكيد
                                 </button>
                             </div>
