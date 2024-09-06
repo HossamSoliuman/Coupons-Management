@@ -440,7 +440,7 @@
 @endsection
 
 @section('content')
-<div class="mt-5">
+<div class="">
     <div>
         <div id="celebrate" class="confetti">
             @for ($i = 0; $i < 20; $i++)
@@ -448,7 +448,7 @@
             @endfor
         </div>
         <div class="text-center">
-            <img src="logo-in-shops-page.png" alt="Logo" style="max-width: 200px;" />
+            <img src="logo-in-shops-page.png" alt="Logo" style="max-width: 100px; " />
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
