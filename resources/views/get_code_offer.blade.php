@@ -94,9 +94,9 @@
 
         .keyboard-button {
             background-color: #d4d4d3;
-            font-size: 16px !important;
+            font-size: 14px !important;
             font-weight: 600;
-            padding: 12px !important;
+            padding: 8px !important;
         }
 
         .submit-button {
@@ -448,9 +448,9 @@
                 @endfor
             </div>
             <div class="text-center mt-4" style="">
-                <img src="shops-images/logo-green.png" alt="Logo" style="max-width: 300px;" /><br>
+                <img src="shops-images/logo-green.png" alt="Logo" style="max-width: 400px;" /><br>
                 <div class="mt-2">
-                    <img src="shops-images/logo-green-text2.png" alt="Logo"style="max-width: 250px;" />
+                    <img src="shops-images/logo-green-text2.png" alt="Logo" style="max-width: 350px;" />
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-center">
