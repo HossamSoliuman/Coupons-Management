@@ -158,7 +158,7 @@
             <div class="page-header">
                 <h1> تفاصيل استخدام عروض : {{ $shop->name }}</h1>
                 <div class="mb-3">
-                    <a href="{{ route('shop.export.pdf', ['shop' => $shop->id]) }}" class="btn create-btn">تحميل بصيغة PDF</a>
+                    {{-- <a href="{{ route('shop.export.pdf', ['shop' => $shop->id]) }}" class="btn create-btn">تحميل بصيغة PDF</a> --}}
                     <a href="{{ route('shop.export.excel', ['shop' => $shop->id]) }}" class="btn create-btn"> تحميل بصيغة Excel</a>
                 </div>
             </div>
