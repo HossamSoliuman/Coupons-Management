@@ -12,11 +12,9 @@
                     <div class="confetti-piece"></div>
                 @endfor
             </div>
-            <div class="text-center mt-4" style="">
-                <img src="shops-images/logo2.png" alt="Logo" style="max-width: 150px;" /><br>
-                <div class="mt-2">
-                    <img src="shops-images/text.png" alt="Logo" style="max-width: 200px;" />
-                </div>
+            <div class="text-center my-4" style="">
+                <img src="shops-images/logo.png" alt="Logo" style=" max-width: 300px; " /><br>
+               
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
@@ -32,14 +30,14 @@
                             <div class="mb-3 d-flex flex-column" style="gap: 10px;">
                                 <div class="input-group">
                                     <span class="input-group-text">
-                                        <i class="fa-solid fa-tag" style="color: #37bca2;"></i>
+                                        <i class="fa-solid fa-tag" style="color: #12ceb3;"></i>
                                     </span>
                                     <input id="code" type="text" class="form-control" name="code"
                                         inputmode='none' required placeholder="أدخل كود العرض" />
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-text phone-icon">
-                                        <i class="fa-solid fa-phone-volume" style="color: #37bca2;"></i>
+                                        <i class="fa-solid fa-phone-volume" style="color: #12ceb3;"></i>
                                     </span>
 
                                     <input id="phone" type="text" class="form-control" name="phone"
