@@ -68,8 +68,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return redirect()->back();
     });
 
-    Route::get('logs/{n}', function ($n) {
-        return Log::orderBy('id', 'desc')->take($n)->get();
+    Route::get('logs', function () {
+        return Log::orderBy('id', 'desc')->take()->get();
     });
 });
 
