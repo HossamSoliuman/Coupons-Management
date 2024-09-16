@@ -75,6 +75,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('logout', function() {
+        Auth::logout();
+        return redirect('/');
+    });
+    
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('api/offer', [GetCodeOffer::class, 'getOffer'])->name('code.offer.get');
     Route::get('/api/verify-phone', [GetCodeOffer::class, 'verifyPhone']);
