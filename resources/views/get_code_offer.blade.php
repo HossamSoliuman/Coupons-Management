@@ -12,8 +12,8 @@
                     <div class="confetti-piece"></div>
                 @endfor
             </div>
-            <div class="text-center my-4" style="">
-                <img src="shops-images/logo.png" alt="Logo" style=" max-width: 300px; " /><br>
+            <div class="text-center mt-4" style="">
+                <img src="shops-images/logo.png" alt="Logo" style=" max-width: 250px; " /><br>
                
             </div>
             <div class="col-12 d-flex justify-content-center">
