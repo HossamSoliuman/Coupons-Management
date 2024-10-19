@@ -5,16 +5,15 @@
 @endsection
 
 @section('content')
-    <div class="">
+    <div class="" style="margin-top: 50px">
         <div>
             <div id="celebrate" class="confetti">
                 @for ($i = 0; $i < 20; $i++)
                     <div class="confetti-piece"></div>
                 @endfor
             </div>
-            <div class="text-center mt-4" style="">
+            <div class="text-center mt-5 mb-3" style="">
                 <img src="shops-images/logo.png" alt="Logo" style=" max-width: 250px; " /><br>
-               
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
