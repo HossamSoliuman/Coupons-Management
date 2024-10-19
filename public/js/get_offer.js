@@ -3,55 +3,55 @@ const phonePattern = /^5[0-9]{8}$/;
 
 document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
     input.addEventListener('focus', () => {
-        input.setAttribute('readonly', true);
+        // input.setAttribute('readonly', true);
     });
 
     input.addEventListener('blur', () => {
-        input.removeAttribute('readonly');
+        // input.removeAttribute('readonly');
     });
 });
 
-$('.otp-input').on('keydown keypress keyup', function (e) {
-    e.preventDefault();
-});
+// $('.otp-input').on('keydown keypress keyup', function (e) {
+//     e.preventDefault();
+// });
 
-$('#code').on('keydown keypress keyup', function (e) {
-    e.preventDefault();
-});
+// $('#code').on('keydown keypress keyup', function (e) {
+//     e.preventDefault();
+// });
 
-$('#phone').on('keydown keypress keyup', function (e) {
-    e.preventDefault();
-});
+// $('#phone').on('keydown keypress keyup', function (e) {
+//     e.preventDefault();
+// });
 
-$('#otp').on('keydown keypress keyup', function (e) {
-    e.preventDefault();
-});
+// $('#otp').on('keydown keypress keyup', function (e) {
+//     e.preventDefault();
+// });
 
 $('#phone').on('focus', function () {
     $('#phoneKeyboard').show();
     $('#codeKeyboard').hide();
-    $('#phone').attr("readonly", true);
-    $('#code').attr("readonly", false);
+    // $('#phone').attr("readonly", true);
+    // $('#code').attr("readonly", false);
 });
 
 $('#code').on('focus', function () {
     $('#phoneKeyboard').hide();
     $('#codeKeyboard').show();
-    $('#code').attr("readonly", true);
-    $('#phone').attr("readonly", false);
+    // $('#code').attr("readonly", true);
+    // $('#phone').attr("readonly", false);
 });
 
 $('#phone').on('blur', function () {
-    $('#phone').attr("readonly", false);
+    // $('#phone').attr("readonly", false);
 });
 
 $('#code').on('blur', function () {
-    $('#code').attr("readonly", false);
+    // $('#code').attr("readonly", false);
 });
 
 $('#submitButton').on('click', function () {
-    $('#code').attr("readonly", false);
-    $('#phone').attr("readonly", false);
+    // $('#code').attr("readonly", false);
+    // $('#phone').attr("readonly", false);
 
     if ($('#phone').val().length && (!phonePattern.test($('#phone').val()) || !$('#code').val().length)) {
         $('#offerValidationMessage').show();
@@ -161,11 +161,11 @@ function endLoading() {
 
 $(document).ready(function () {
     $('#offerForm').submit(function (event) {
-        $('#code').attr("readonly", false);
-        $('#phone').attr("readonly", false);
+        // $('#code').attr("readonly", false);
+        // $('#phone').attr("readonly", false);
 
-        $('#phone').blur();
-        $('#phone').blur();
+        // $('#phone').blur();
+        // $('#phone').blur();
 
         event.preventDefault();
 

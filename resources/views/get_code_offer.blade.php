@@ -33,7 +33,7 @@
                                         <i class="fa-solid fa-tag" style="color: #12ceb3;"></i>
                                     </span>
                                     <input id="code" type="text" class="form-control" name="code"
-                                        inputmode='none' required placeholder="أدخل كود العرض" />
+                                        required placeholder="أدخل كود العرض" />
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-text phone-icon">
@@ -41,11 +41,11 @@
                                     </span>
 
                                     <input id="phone" type="text" class="form-control" name="phone"
-                                        inputmode='none' required
+                                        required
                                         title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                         placeholder="رقم الهاتف (9 أرقام)">
                                 </div>
-                                <div id="codeKeyboard" class="keyboard-parent">
+                                {{-- <div id="codeKeyboard" class="keyboard-parent">
                                     @foreach (range('A', 'Z') as $letter)
                                         <button type="button" class="btn btn-sm send-button keyboard-button"
                                             onclick="addToInput('code', '{{ $letter }}')">{{ $letter }}</button>
@@ -56,8 +56,8 @@
                                         class="btn btn-sm submit-button keyboard-button ">
                                         تأكيد
                                     </button>
-                                </div>
-                                <div id="phoneKeyboard" class="keyboard-parent keyboard-parent-number"
+                                </div> --}}
+                                {{-- <div id="phoneKeyboard" class="keyboard-parent keyboard-parent-number"
                                     style="display: none;" aria-hidden="true">
                                     @foreach (range(1, 9) as $number)
                                         <button type="button" class="btn btn-sm send-button keyboard-button"
@@ -71,7 +71,7 @@
                                         class="btn btn-sm submit-button submit-button-number keyboard-button ">
                                         تأكيد
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div id="loadingSpinner" style="display: none;">
@@ -96,7 +96,7 @@
                                         @endfor
                                     </div>
                                 </div>
-                                <div id="otpKeyboard" class="keyboard-parent keyboard-parent-number">
+                                {{-- <div id="otpKeyboard" class="keyboard-parent keyboard-parent-number">
                                     @foreach (range(1, 9) as $number)
                                         <button type="button" class="btn btn-sm send-button keyboard-button"
                                             onclick="addToOtpInputs('{{ $number }}')">{{ $number }}</button>
@@ -109,7 +109,7 @@
                                         class="btn btn-sm submit-button submit-button-number keyboard-button">
                                         تأكيد
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
 
