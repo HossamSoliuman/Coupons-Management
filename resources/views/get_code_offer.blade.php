@@ -64,7 +64,7 @@
                                 <div class="input-group">
                                     <div class="otp-inputs">
                                         @for ($i = 0; $i < 6; $i++)
-                                            <input type="text" class="form-control otp-input"
+                                            <input type="number" class="form-control otp-input"
                                                 id="otp-input-{{ $i }}" maxlength="1" required>
                                         @endfor
                                     </div>
