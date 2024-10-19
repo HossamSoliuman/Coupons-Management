@@ -44,7 +44,8 @@
                                         placeholder="رقم الهاتف (9 أرقام)">
                                 </div>
 
-                                <input type="submit" value="أحصل علي العرض" class="btn rounded-pill w-50 submit-button font-lg ">
+                                <input type="submit" value="أحصل علي العرض"
+                                    class="btn rounded-pill w-50 submit-button font-lg ">
 
                             </div>
 
@@ -71,7 +72,8 @@
                                 </div>
                             </div>
                             <div class="mb-3 d-flex flex-column" style="width: 100%;">
-                                <input id="submitButton" type="submit" value="تأكيد" class="btn submit-button  w-50 rounded-pill">
+                                <input id="submitButton" type="submit" value="تأكيد"
+                                    class="btn submit-button  w-50 rounded-pill">
                             </div>
                         </form>
 
@@ -82,6 +84,15 @@
 
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+    </script>
 
     <div class="modal result" id="responseModal" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered success_tic" role="document">
