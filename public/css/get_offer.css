@@ -17,8 +17,8 @@
 }
 
 .form-control:focus {
-    border:solid 1px #12ceb3 !important;
-    box-shadow: 0px 0px 2px 2px #12ceb3 !important;
+    border:solid 4px #fee7d7 !important;
+    box-shadow: 0px 0px 3px 3px #fee7d7 !important;
 }
 
 .form-label {
@@ -99,12 +99,12 @@
 }
 
 .keyboard-button:hover {
-    background-color: #1bd1bc;
-    color: white;
+    background-color: #fee7d7;
+    color: black;
 }
 
 .submit-button {
-    background-color: #12ceb3;
+    background-color: #e43c7c;
     color: white;
     transition: background-color 0.3s ease;
 }
@@ -114,8 +114,8 @@
 }
 
 .submit-button:hover {
-    color: white;
-    background-color: #2cd4cc;
+    color: black;
+    background-color: #fee7d7;
 
 }
 
@@ -440,4 +440,16 @@
 
 .key:hover {
     background-color: #d4f1b3;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
