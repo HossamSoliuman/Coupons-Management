@@ -39,7 +39,7 @@
                                         <i class="fa-solid fa-phone-volume" style="color: #12ceb3;"></i>
                                     </span>
 
-                                    <input id="phone" type="text" class="form-control" name="phone"
+                                    <input id="phone" type="number" class="form-control" name="phone"
                                         required
                                         title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                         placeholder="رقم الهاتف (9 أرقام)">
