@@ -17,8 +17,8 @@
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
-                    <div class="card-body text-center" style="width: 100%;">
-                        <form id="offerForm" class="text-center">
+                    <div class="card-body text-center " style="width: 100%;">
+                        <form id="offerForm" class="text-center mb-3">
                             @csrf
                             <p id="offerValidationMessage" class="alert alert-danger text-center"
                                 style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; width: 80%; max-width: 500px;">
@@ -43,11 +43,11 @@
                                         title="أدخل رقم هاتف سعودي صحيح يتكون من 9 أرقام ويبدأ بالرقم 5"
                                         placeholder="رقم الهاتف (9 أرقام)">
                                 </div>
-
-                                <input type="submit" value="أحصل علي العرض"
-                                    class="btn rounded-pill w-50 submit-button font-lg ">
-
                             </div>
+                            <div class="input-group d-flex justify-content-center">
+                                <input type="submit" value="أحصل علي العرض" class="btn rounded-pill submit-button">
+                            </div>
+
 
                             <div id="loadingSpinner" style="display: none;">
                                 <img src="spinner.gif" alt="Loading..." style="width:100px" />
@@ -89,6 +89,12 @@
             input.addEventListener('input', (e) => {
                 if (e.target.value.length === 1 && index < inputs.length - 1) {
                     inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
                 }
             });
         });
