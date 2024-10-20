@@ -73,9 +73,26 @@
                             </div>
                             <div class="mb-3 d-flex flex-column" style="width: 100%;">
                                 <input id="submitButton" type="submit" value="تأكيد"
-                                    class="btn submit-button  w-50 rounded-pill">
+                                    class="btn submit-button w-50 rounded-pill">
                             </div>
                         </form>
+
+                        <script>
+                            document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+                                input.addEventListener('input', (e) => {
+                                    e.target.value = e.target.value.slice(0, 1);
+                                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                                        inputs[index + 1].focus();
+                                    }
+                                });
+
+                                input.addEventListener('keydown', (e) => {
+                                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                                        inputs[index - 1].focus();
+                                    }
+                                });
+                            });
+                        </script>
 
                     </div>
                 </div>
@@ -84,21 +101,6 @@
 
         </div>
     </div>
-    <script>
-        document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
-            input.addEventListener('input', (e) => {
-                if (e.target.value.length === 1 && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            });
-
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && !e.target.value && index > 0) {
-                    inputs[index - 1].focus();
-                }
-            });
-        });
-    </script>
 
     <div class="modal result" id="responseModal" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered success_tic" role="document">
