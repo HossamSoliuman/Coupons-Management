@@ -13,7 +13,7 @@
                 @endfor
             </div>
             <div class="text-center mt-5 mb-3" style="">
-                <img src="shops-images/logo.png" alt="Logo" style=" max-width: 350px; " /><br>
+                <img src="shops-images/logo.png" alt="Logo" style=" max-width: 300px; " /><br>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="card" style="box-shadow: none; width: 100%; max-width: 500px;">
