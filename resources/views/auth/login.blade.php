@@ -39,7 +39,7 @@
         style="height: 94vh"
     >
         <div class="mb-5 text-center">
-            <img src="logo.jpeg" alt="Logo" style="max-width: 200px" />
+            <img src="img/logo.png" alt="Logo" style="max-width: 200px" />
         </div>
         <div class="col-md-8">
             <div class="card inputCard" style="border-radius: 25px">
@@ -48,13 +48,7 @@
                         @csrf
                         <div class="d-flex justify-content-center">
                             <div class="w-50">
-                                <!-- <div class="mb-3 text-center">
-                                    <img
-                                        src="logo.jpeg"
-                                        alt="Logo"
-                                        style="max-width: 200px"
-                                    />
-                                </div> -->
+                
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label"
