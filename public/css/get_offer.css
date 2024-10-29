@@ -1,13 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 
 * {
     font-family: "Cairo", sans-serif;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 50;
+    font-size: 22px;
+    color: #e43c7c;
 }
 
 .form-control {
     text-align: right;
     height: 60px;
     padding-right: 56px;
+    position: relative;
 }
 
 .form-control:hover {
@@ -61,7 +72,6 @@
 .send-button:hover :first-child::before {
     animation: send-button 2s both infinite;
 }
-
 
 .submit-button {
     background-color: #e43c7c;
@@ -143,7 +153,7 @@
 
 .success_tic .page-body {
     max-width: 300px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin: 10% auto;
 }
 
@@ -164,7 +174,7 @@
 }
 
 .inputCard {
-    box-shadow: 0 2px 12px 5px #EAFFD0 !important;
+    box-shadow: 0 2px 12px 5px #eaffd0 !important;
     height: 450px;
 }
 
@@ -222,10 +232,121 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+
+* {
+    font-family: "Cairo", sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.logo {
+    font-size: 30px;
+    color: #e83a7b;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    text-align: right;
+    height: 60px;
+    padding-right: 56px;
+}
+
+.form-control:hover {
+    border-width: 2px;
+}
+
+.form-control:focus {
+    border: solid 4px #fee7d7 !important;
+    box-shadow: 0px 0px 3px 3px #fee7d7 !important;
+}
+
+.form-label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.input-group img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+}
+
+.submit-button {
+    background-color: #e43c7c;
+    color: white;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    color: black;
+    background-color: #fee7d7;
+}
+
+/* بقية الإستايلات كما هي */
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.otp-input {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.modal-content,
+.alert {
+    border-radius: 28px !important;
+}
+
+.success_tic .page-body {
+    max-width: 300px;
+    background-color: #ffffff;
+    margin: 10% auto;
 }

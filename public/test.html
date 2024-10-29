@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إعادة تصميم العرض</title>
-    <style>
-        body {
-            background-color: #f8f8f8;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 350px;
-        }
-        
-        .logo {
-            font-size: 30px;
-            color: #e83a7b;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .input-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            padding-right: 40px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            font-size: 14px;
-            text-align: right;
-            box-sizing: border-box;
-        }
-        
-        .input-group img {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            width: 20px;
-        }
-        
-       
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="logo">سعاده</div>
-        <div class="input-group">
-            <input type="text" placeholder="أدخل كود العرض">
-            <img src="tag-icon.png" alt="Tag Icon">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>إعادة تصميم العرض</title>
+        <style>
+            body {
+                background-color: #f8f8f8;
+                font-family: "Arial", sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .logo {
+                font-size: 30px;
+                color: #e83a7b;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .input-group {
+                margin-bottom: 15px;
+                position: relative;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 10px;
+                padding-right: 40px;
+                border: 1px solid #ddd;
+                border-radius: 25px;
+                font-size: 14px;
+                text-align: right;
+                box-sizing: border-box;
+            }
+
+            .input-group img {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                width: 20px;
+            }
+
+            .button {
+                background-color: #e83a7b;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                width: 100%;
+                border-radius: 25px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .button:hover {
+                background-color: #c03165;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 400px) {
+                .container {
+                    padding: 20px;
+                }
+
+                .logo {
+                    font-size: 24px;
+                }
+
+                .input-group input {
+                    font-size: 13px;
+                    padding: 8px;
+                }
+
+                .button {
+                    font-size: 14px;
+                    padding: 8px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo">عادة</div>
+            <div class="input-group">
+                <input type="text" placeholder="أدخل كود العرض" />
+                <img src="tag-icon.png" alt="Tag Icon" />
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="رقم الهاتف (9 أرقام)" />
+                <img src="phone-icon.png" alt="Phone Icon" />
+            </div>
+            <button class="button">احصل على العرض</button>
         </div>
-        <div class="input-group">
-            <input type="text" placeholder="رقم الهاتف (9 أرقام)">
-            <img src="phone-icon.png" alt="Phone Icon">
-        </div>
-        <button class="button">احصل على العرض</button>
-    </div>
-</body>
+    </body>
 </html>
