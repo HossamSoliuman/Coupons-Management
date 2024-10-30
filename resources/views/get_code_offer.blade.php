@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="container">
-    <div class="logo">سعادة</div>
+    <div class="logo">
+        <img src="img/logo.png" alt="" style="max-width: 150px">
+    </div>
     <form id="offerForm" class="text-center mb-3">
         @csrf
         <p id="offerValidationMessage" class="alert alert-danger text-center" style="display: none;">
@@ -38,13 +40,11 @@
             الرمز الذي أدخلته غير صحيح.
         </p>
         <label for="otp" class="form-label">أدخل الكود المرسل إليك</label>
-        <div class="input-group">
-            <div class="otp-inputs">
+            <div class="otp-inputs mb-3">
                 @for ($i = 0; $i < 6; $i++)
-                    <input type="number" class="form-control otp-input" id="otp-input-{{ $i }}" maxlength="1" required>
+                    <input type="number" class="otp-input" id="otp-input-{{ $i }}" maxlength="1" required>
                 @endfor
             </div>
-        </div>
         <div class="input-group">
             <input id="submitButton" type="submit" value="تأكيد" class="submit-button">
         </div>

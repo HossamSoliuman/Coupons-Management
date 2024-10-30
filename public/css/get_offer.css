@@ -16,9 +16,11 @@
 
 .form-control {
     text-align: right;
-    height: 60px;
-    padding-right: 56px;
+    height: 50px !important;
+    border-radius: 50px !important;
+    padding-right: 20px;
     position: relative;
+
 }
 
 .form-control:hover {
@@ -58,7 +60,7 @@
 }
 
 .otp-input {
-    width: 60px;
+    width: 55px;
     height: 60px;
     text-align: center;
     font-size: 16px;
@@ -311,7 +313,7 @@ body {
     color: white;
     transition: background-color 0.3s ease;
     width: 100%;
-    height: 60px;
+    height: 45px;
     border: none;
     border-radius: 25px;
     font-size: 16px;
@@ -325,20 +327,6 @@ body {
 
 /* بقية الإستايلات كما هي */
 
-.otp-inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.otp-input {
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-}
 
 .modal-content,
 .alert {
