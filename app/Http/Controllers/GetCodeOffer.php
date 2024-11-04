@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Code;
 use App\Models\OfferUsage;
+use App\Models\Shop;
 use App\Services\OtpService;
 use App\Models\VerifiedPhone;
 use Carbon\Carbon;
@@ -26,13 +27,14 @@ class GetCodeOffer extends Controller
     {
         $inputCode = $request->code;
         $inputPhone = $request->phone;
+        $qrKey = $request->qrKey;
 
         if ($this->otpService->checkIsVerified($inputPhone)) {
             return response()->json([
                 'verified' => 1
             ]);
         } else {
-            $message = $this->otpService->sendOtp($inputPhone, $inputCode);
+            $message = $this->otpService->sendOtp($inputPhone, $inputCode, $qrKey);
             return response()->json([
                 'verified' => 0,
                 'message' => $message,
@@ -51,11 +53,13 @@ class GetCodeOffer extends Controller
     {
         $inputCode = Str::upper($request->code);
         $inputPhone = $request->phone;
+        $shop = Shop::where('qr_key', $request->qrKey)->first();
+        $shopId = $shop->id;
 
         $code = Code::with(['offers', 'shops'])
             ->where(DB::raw('BINARY name'), $inputCode)
-            ->whereHas('shops', function ($query) {
-                $query->where('shop_id', auth()->user()->shop_id);
+            ->whereHas('shops', function ($query) use ($shopId) {
+                $query->where('shop_id', $shopId);
             })
             ->first();
 
@@ -70,8 +74,8 @@ class GetCodeOffer extends Controller
 
         $usedOffersByPhone = OfferUsage::with('offer.code')
             ->where('phone_number', $inputPhone)
-            ->whereHas('offer.code', function ($query) use ($code) {
-                $query->where('code_id', $code->id)->where('shop_id', auth()->user()->shop_id);
+            ->whereHas('offer.code', function ($query) use ($code, $shopId) {
+                $query->where('code_id', $code->id)->where('shop_id', $shopId);
             })
             ->where('created_at', '>=', Carbon::now()->subDay())
             ->get();

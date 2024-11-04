@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class OtpService
 {
-    public function sendOtp($phoneNumber, $code)
+    public function sendOtp($phoneNumber, $code, $qrKey)
     {
-
         // $response = $this->sendWithAuthentica($phoneNumber);
         $response['success'] = 1;
 
@@ -21,12 +20,14 @@ class OtpService
                 $verifiedPhone->increment('sent_count');
                 $verifiedPhone->update([
                     'code' => $code,
+                    'qr_key' => $qrKey,
                     'is_verified' => false,
                 ]);
             } else {
                 VerifiedPhone::create([
                     'phone' => $phoneNumber,
                     'code' => $code,
+                    'qr_key' => $qrKey,
                     'sent_count' => 1,
                     'is_verified' => false,
                 ]);
@@ -39,11 +40,11 @@ class OtpService
     public function verify($phone, $otp)
     {
         // $this->verifyWithAuthentica($phone, $otp);
-        
-        $response = null;
-        if ( true) {
 
-        // if ($response['status'] == true) {
+        $response = null;
+        if (true) {
+
+            // if ($response['status'] == true) {
             $verifiedPhone = VerifiedPhone::where('phone', $phone)->first();
             if ($verifiedPhone) {
                 $verifiedPhone->update(['is_verified' => true]);
@@ -51,6 +52,7 @@ class OtpService
                     'success' => 1,
                     'phone' => $phone,
                     'code' => $verifiedPhone->code,
+                    'qrKey' => $verifiedPhone->qr_key,
                     'message' => $response
                 ];
             }

@@ -15,6 +15,7 @@ class Shop extends Model
         'name',
         'address',
         'number',
+        'qr_key'
     ];
 
     public function codes()

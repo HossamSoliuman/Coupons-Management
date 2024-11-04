@@ -96,7 +96,7 @@ function buildSuccessModal(response) {
     modalBody.append(alertDiv);
 }
 
-function get_offer(phone, code) {
+function get_offer(phone, code, qrKey) {
     $('#otpForm').hide();
     $('#offerForm').show();
     $('#code').focus();
@@ -106,7 +106,8 @@ function get_offer(phone, code) {
         url: '/api/offer',
         data: {
             phone,
-            code
+            code,
+            qrKey
         },
         success: function (response) {
             console.log(response);
@@ -118,7 +119,7 @@ function get_offer(phone, code) {
 
                 buildSuccessModal(response);
 
-                $('#failedModalGif').attr('src', 'gift-discount.gif').addClass('gifHidden');
+                $('#failedModalGif').hide();
                 $('#responseModal').modal('show');
 
                 $('#celebrate').addClass('confettiShow');
@@ -140,7 +141,7 @@ function get_offer(phone, code) {
                 );
 
                 $('#responseModal').modal('show');
-                $('#failedModalGif').removeClass('gifHidden');
+                $('#failedModalGif').show();
             }
         },
         error: function (xhr) {
@@ -161,14 +162,8 @@ function endLoading() {
 
 $(document).ready(function () {
     $('#offerForm').submit(function (event) {
-        // $('#code').attr("readonly", false);
-        // $('#phone').attr("readonly", false);
-
-        // $('#phone').blur();
-        // $('#phone').blur();
 
         event.preventDefault();
-
         if ($('#phone').val().length && (!phonePattern.test($('#phone').val()) || !$('#code').val()
             .length)) {
             $('#offerValidationMessage').show();
@@ -181,7 +176,7 @@ $(document).ready(function () {
 
             var phone = $('#phone').val().toLowerCase();
             var code = $('#code').val().toUpperCase();
-
+            var qrKey = $('#qrKey').val();
             startLoading();
 
             $.ajax({
@@ -189,12 +184,13 @@ $(document).ready(function () {
                 url: '/api/verify-phone',
                 data: {
                     phone,
-                    code
+                    code,
+                    qrKey
                 },
                 success: function (response) {
                     endLoading();
                     if (response.verified) {
-                        get_offer(phone, code);
+                        get_offer(phone, code, qrKey);
                     } else {
                         $('#offerForm').hide();
                         $('#otpForm').show();
@@ -216,7 +212,7 @@ $(document).ready(function () {
                     );
 
                     $('#responseModal').modal('show');
-                    $('#failedModalGif').removeClass('gifHidden');
+                    $('#failedModalGif').show();
                 }
             });
         }
@@ -241,7 +237,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if (response.success) {
-                    get_offer(phone, response.code);
+                    get_offer(phone, response.code, response.qrKey);
                     $('#otpForm').trigger("reset");
                     $('#otpWrongMessage').hide();
                 } else {

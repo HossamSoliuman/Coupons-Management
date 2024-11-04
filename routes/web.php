@@ -1,22 +1,19 @@
 <?php
 
 use App\Http\Controllers\CodeController;
-use App\Http\Controllers\ExtractionController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\GetCodeOffer;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
-use App\Models\Code;
 use App\Models\Log;
-
+use App\Models\Shop;
+use App\Models\User;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +28,23 @@ use App\Models\Log;
 Auth::routes([
     'register' => false
 ]);
+
+Route::get('test', function () {
+    $shops = Shop::all();
+    foreach ($shops as $shop) {
+        if ($shop->qr_key == null) {
+            $key = Str::uuid()->toString();
+            $shop->qr_key = $key;
+            $shop->save();
+        }
+    }
+    return 'done';
+});
+
+Route::get('/offer/{qr_key}', function ($qr_key) {
+    return view('get_code_offer', ['qr_key' => $qr_key]);
+})->name('code.get_offer');
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -75,17 +89,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('logout', function() {
+    Route::get('logout', function () {
         Auth::logout();
         return redirect('/');
     });
-    
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('api/offer', [GetCodeOffer::class, 'getOffer'])->name('code.offer.get');
-    Route::get('/api/verify-phone', [GetCodeOffer::class, 'verifyPhone']);
-    Route::get('/api/verify-otp', [GetCodeOffer::class, 'verifyOtp']);
 
-    Route::get('/offer', function () {
-        return view('get_code_offer');
-    })->name('code.get_offer');
+    Route::get('/', [HomeController::class, 'index'])->name('index');
 });
+Route::get('api/offer', [GetCodeOffer::class, 'getOffer'])->name('code.offer.get');
+Route::get('/api/verify-phone', [GetCodeOffer::class, 'verifyPhone']);
+Route::get('/api/verify-otp', [GetCodeOffer::class, 'verifyOtp']);
