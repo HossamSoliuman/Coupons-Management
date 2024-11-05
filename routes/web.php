@@ -47,6 +47,7 @@ Route::get('/offer/{qr_key}', function ($qr_key) {
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/index', [IndexController::class, 'index'])->name('admin.index');
     Route::get('index/chart-data', [IndexController::class, 'chartData']);
@@ -93,9 +94,8 @@ Route::middleware(['auth'])->group(function () {
         Auth::logout();
         return redirect('/');
     });
-
-    Route::get('/', [HomeController::class, 'index'])->name('index');
 });
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('api/offer', [GetCodeOffer::class, 'getOffer'])->name('code.offer.get');
 Route::get('/api/verify-phone', [GetCodeOffer::class, 'verifyPhone']);
 Route::get('/api/verify-otp', [GetCodeOffer::class, 'verifyOtp']);
