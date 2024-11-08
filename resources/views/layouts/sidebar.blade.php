@@ -49,7 +49,7 @@
 </style>
 <nav id="sidebar" class="col-md-3 col-lg-2 position-sticky d-md-block nav-color p-0">
     <div class="mx-auto" style="max-width: 160px; text-align: center;">
-        <img src="{{ asset('logo-trans.png') }}" alt="Logo" class="my-4 mw-100" />
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="my-4 mw-100" />
     </div>
     <ul class="nav d-flex flex-column align-items-start p-2 flex-grow-1">
         <li class="nav-item {{ Request::segment(1) == 'index' ? 'active-nav-item' : '' }}">
