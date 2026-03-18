@@ -21,7 +21,7 @@ A Laravel-based dashboard for managing shops, offers, and promotional codes with
 
 - PHP >= 8.1
 - Composer
-- MySQL / MariaDB
+- MySQL 
 - Node.js & NPM
 - Git
 
