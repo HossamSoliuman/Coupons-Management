@@ -1,4 +1,3 @@
-````markdown id="x9kd2p"
 # Offer & Codes Management System
 
 A Laravel-based dashboard for managing shops, offers, and promotional codes with usage tracking, exports, and OTP-based offer retrieval.
