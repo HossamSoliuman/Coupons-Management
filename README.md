@@ -29,6 +29,7 @@ A Laravel-based dashboard for managing shops, offers, and promotional codes with
 
 ## Installation
 
+
 ### 1. Clone Repository
 
 ```bash
