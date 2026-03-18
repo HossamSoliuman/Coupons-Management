@@ -32,8 +32,8 @@ A Laravel-based dashboard for managing shops, offers, and promotional codes with
 ### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clone https://github.com/HossamSoliuman/Coupons-Management
+cd Coupons-Management
 ````
 
 ### 2. Install Dependencies
