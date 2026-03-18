@@ -12,6 +12,7 @@ use App\Models\Offer;
 use App\Models\OfferUsage;
 use Hossam\Licht\Controllers\LichtBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ShopController extends LichtBaseController
 {
@@ -19,13 +20,23 @@ class ShopController extends LichtBaseController
     public function index()
     {
         $shops = Shop::all();
-        $shops = ShopResource::collection($shops);
+
+        foreach ($shops as $shop) {
+            $shop->qr_code = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(200)
+                ->generate(route('code.get_offer', ['qr_key' => $shop->qr_key]));
+        }
+
         return view('shops.index', compact('shops'));
     }
 
+
     public function store(StoreShopRequest $request)
     {
-        $shop = Shop::create($request->validated());
+        $uniqueKey =  Str::uuid()->toString();
+        $validData = $request->validated();
+        $validData['qr_key'] = $uniqueKey;
+        Shop::create($validData);
         return redirect()->route('shops.index');
     }
 

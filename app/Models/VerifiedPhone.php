@@ -14,5 +14,6 @@ class VerifiedPhone extends Model
         'code',
         'is_verified',
         'sent_count',
+        'qr_key'
     ];
 }

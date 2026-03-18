@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,10 +23,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('mainPage');
         $role = auth()->user()->role;
         if ($role == 'admin') {
             return redirect()->route('admin.index');
         } else if ($role == 'user')
-            return redirect()->route('code.get_offer');
+            return view('mainPage');
+        // return redirect()->route('code.get_offer');
+    }
+    public function admin()
+    {
+        $role = auth()->user()->role;
+        if ($role == 'admin') {
+            return redirect()->route('admin.index');
+        }
     }
 }

@@ -57,12 +57,47 @@
             width: 20px;
         }
         
-       
+        .button {
+            background-color: #e83a7b;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #c03165;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .container {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .input-group input {
+                font-size: 13px;
+                padding: 8px;
+            }
+
+            .button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">سعاده</div>
+        <div class="logo">عادة</div>
         <div class="input-group">
             <input type="text" placeholder="أدخل كود العرض">
             <img src="tag-icon.png" alt="Tag Icon">
